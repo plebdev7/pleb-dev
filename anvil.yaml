@@ -3,11 +3,12 @@ services:
 - source: /runtime/services/tables.yml
   client_config: {}
   server_config: {}
+startup: {type: form, module: FormHome}
 package_name: pleb_dev
 allow_embedding: false
 name: pleb.dev
 runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox,
   server_spec: null}
 metadata: {title: pleb.dev, description: Games for Plebs}
-startup_form: Form1
+startup_form: null
 renamed: true

@@ -1,6 +1,8 @@
 unique_ids:
   forms:
-    Form1: KE5QAZFBYYCGUMDRMYGJUVNAZ56GTWRG
+    FormHome: KE5QAZFBYYCGUMDRMYGJUVNAZ56GTWRG
+    PageGamesList: '1700682612879239592200737.65143'
+    PagePotionsGame: '1700684234290417693397191.6701'
   modules: {}
   server_modules: {}
   assets:

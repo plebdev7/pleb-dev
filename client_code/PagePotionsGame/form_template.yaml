@@ -1,0 +1,7 @@
+container: {type: ColumnPanel}
+components:
+- name: label_1
+  properties: {text: potions, role: headline}
+  type: Label
+  layout_properties: {grid_position: 'BSZIAF,AIGWKP'}
+is_package: true
