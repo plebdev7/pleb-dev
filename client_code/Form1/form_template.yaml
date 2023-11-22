@@ -12,3 +12,12 @@ components:
   properties: {}
   name: navbar_links
   layout_properties: {slot: nav-right}
+  components:
+  - name: link_1
+    properties: {icon: 'fa:flask'}
+    type: Link
+    layout_properties: {}
+- name: label_1
+  properties: {text: pleb.dev, role: title}
+  type: Label
+  layout_properties: {slot: title}
