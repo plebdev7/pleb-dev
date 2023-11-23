@@ -2,16 +2,19 @@ from ._anvil_designer import FormHomeTemplate
 from anvil import *
 
 from ..PageGamesList import PageGamesList
+from ..PageClickGame import PageClickGame
 from ..PagePotionsGame import PagePotionsGame
 
 class FormHome(FormHomeTemplate):
     def __init__(self, **properties):
         # Create references to all pages
         self.page_games_list = PageGamesList()
+        self.page_click = PageClickGame()
         self.page_potions = PagePotionsGame()
 
         # Attach pages to individual links
         self.link_games.tag.form_to_open = self.page_games_list
+        self.link_click.tag.form_to_open = self.page_click
         self.link_potions.tag.form_to_open = self.page_potions
 
         # set default page as Games List

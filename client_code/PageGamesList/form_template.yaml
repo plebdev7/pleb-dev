@@ -4,6 +4,16 @@ components:
   properties: {text: all games, role: headline}
   type: Label
   layout_properties: {grid_position: 'WUUWJI,MALSVS'}
+- name: outlined_card_2
+  properties: {role: outlined-card}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'THUZTZ,JMKIHW'}
+  components:
+  - name: button_click
+    properties: {text: click, icon: 'fa:mouse-pointer'}
+    type: Button
+    layout_properties: {grid_position: 'GVHEAF,GLWDUO'}
+    data_bindings: []
 - name: outlined_card_1
   properties: {role: outlined-card}
   type: ColumnPanel
