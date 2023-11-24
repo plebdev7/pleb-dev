@@ -6,7 +6,7 @@ unique_ids:
     PagePotionsGame: '1700684234290417693397191.6701'
   modules:
     Controller: 66LVCGF2UK5TLKQJ3DZSHNWUMXAPCBMH
-    PageHandler: '1700790644612251393539559.53293'
+    Fail: '1700790644612251393539559.53293'
   server_modules: {}
   assets:
     standard-page.html: FY5QBEP4A7W7YWGZMKRXBGMUMOHFKHQX

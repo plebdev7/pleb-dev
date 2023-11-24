@@ -1,4 +1,4 @@
-from .Controller import Page
+from ..Controller import Page
 from ._anvil_designer import FormHomeTemplate  # type: ignore
 
 # from anvil import *
