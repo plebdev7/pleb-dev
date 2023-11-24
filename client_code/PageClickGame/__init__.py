@@ -3,6 +3,7 @@ from ._anvil_designer import PageClickGameTemplate  # type: ignore
 # from anvil import *
 
 
+
 class PageClickGame(PageClickGameTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
