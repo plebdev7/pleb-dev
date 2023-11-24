@@ -12,13 +12,17 @@ class PageGamesList(PageGamesListTemplate):
         """Call during form init"""
         
         # Attach pages to individual links
-        self.button_click.tag.form_to_open = Page.ClickGame
-        self.button_potions.tag.form_to_open = Page.PotionsGame
+        self.button_click.tag.page = Page.ClickGame
+        self.button_potions.tag.page = Page.PotionsGame
+
+        print(self.button_click.tag)
 
         print(Page.ClickGame)
 
     def game_link_click(self, **event_args):
         """Generalized click handler for game links"""
-        form_to_open = event_args['sender'].tag.form_to_open
-        get_open_form().open_game(form_to_open)
+        print(self.button_click.tag)
+        
+        page = event_args['sender'].tag.page
+        get_open_form().open_game(page)
         
