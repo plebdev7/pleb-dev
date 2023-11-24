@@ -11,7 +11,7 @@ class PageClickGame(PageClickGameTemplate):
         self._score = 0
 
     def _update_score_label(self):
-        self.label_score = self._score
+        self.label_score.text = self._score
 
     def button_click_click(self, **event_args):
         """This method is called when the button is clicked"""
