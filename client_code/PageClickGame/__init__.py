@@ -1,5 +1,7 @@
-from ._anvil_designer import PageClickGameTemplate
-from anvil import *
+from ._anvil_designer import PageClickGameTemplate  # type: ignore
+
+# from anvil import *
+
 
 class PageClickGame(PageClickGameTemplate):
     def __init__(self, **properties):
