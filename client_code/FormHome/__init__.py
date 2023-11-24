@@ -22,7 +22,8 @@ class FormHome(FormHomeTemplate):
 
     def nav_link_click(self, **event_args):
         """Generalized click handler for nav links"""
-        page = event_args["sender"].tag.page
+        page = event_args['sender'].tag.page
+
         self.open_game(page)
 
     def open_game(self, page):

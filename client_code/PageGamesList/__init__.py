@@ -3,8 +3,10 @@ from ._anvil_designer import PageGamesListTemplate  # type: ignore
 from anvil import get_open_form
 
 
+from ..PageHandler import Page
+
 class PageGamesList(PageGamesListTemplate):
-    def __init__(self, **properties):
+    def __init__(self, **properties):             
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
 
@@ -23,5 +25,6 @@ class PageGamesList(PageGamesListTemplate):
         """Generalized click handler for game links"""
         print(self.button_click.tag)
 
-        page = event_args["sender"].tag.page
+        page = event_args['sender'].tag.page
         get_open_form().open_game(page)
+
