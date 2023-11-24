@@ -1,7 +1,6 @@
+from client_code.Controller import Page
 from ._anvil_designer import PageGamesListTemplate  # type: ignore
 from anvil import get_open_form
-
-from ..PageHandler import Page
 
 
 class PageGamesList(PageGamesListTemplate):
