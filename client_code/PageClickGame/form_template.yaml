@@ -4,4 +4,45 @@ components:
   properties: {role: headline, text: click}
   type: Label
   layout_properties: {grid_position: 'ZLWJTP,SCCAIP'}
+- name: outlined_card_1
+  properties: {role: outlined-card}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'JFSWXH,KNXLOU', full_width_row: false}
+  components:
+  - name: label_score
+    properties: {text: '0', role: display, align: center}
+    type: Label
+    layout_properties: {grid_position: 'VDZNRQ,WCIYLP'}
+  - name: button_click
+    properties: {text: Click Me!, role: filled-button, font_size: 24, bold: true}
+    type: Button
+    layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
+    data_bindings: []
+    event_bindings: {click: button_click_click}
+- name: outlined_card_2
+  properties: {role: outlined-card}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'HPQVQQ,SGPTPX'}
+  components:
+  - name: label_2
+    properties: {text: Generators, role: title, icon: 'fa:gear'}
+    type: Label
+    layout_properties: {grid_position: 'JQWTKD,NUESNZ'}
+  - name: repeating_panel_generators
+    properties: {item_template: PageClickGame.TemplateGenerator}
+    type: RepeatingPanel
+    layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
+- name: outlined_card_3
+  properties: {role: outlined-card}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'HPQVQQ,ZTCBAM'}
+  components:
+  - name: label_3
+    properties: {text: Upgrades, icon: 'fa:angle-double-up', role: title}
+    type: Label
+    layout_properties: {grid_position: 'VRBMMK,HXSMEU'}
+  - name: repeating_panel_upgrades
+    properties: {item_template: PageClickGame.TemplateUpgrade}
+    type: RepeatingPanel
+    layout_properties: {grid_position: 'IKDUSD,BCARXF'}
 is_package: true

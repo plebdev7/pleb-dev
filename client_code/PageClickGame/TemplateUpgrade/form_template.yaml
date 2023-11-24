@@ -1,0 +1,21 @@
+is_package: true
+container: {type: ColumnPanel}
+components:
+- name: outlined_card_1
+  properties: {role: outlined-card}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'XTSLMW,LPLLFQ'}
+  components:
+  - name: label_name
+    properties: {role: title}
+    type: Label
+    layout_properties: {grid_position: 'SVHIHC,NLRDCQ QCNPCC,VQIHGY'}
+  - name: button_cost
+    properties: {text: 'Cost: 0', role: tonal-button, font_size: 24}
+    type: Button
+    layout_properties: {grid_position: 'SVHIHC,AUOYMY'}
+    event_bindings: {click: button_cost_click}
+  - name: label_effect
+    properties: {role: input-prompt}
+    type: Label
+    layout_properties: {grid_position: 'SVHIHC,NLRDCQ IFKHBN,WFMYBT'}
