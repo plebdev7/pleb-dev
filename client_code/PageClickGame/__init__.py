@@ -1,9 +1,10 @@
-from ._anvil_designer import PagePotionsGameTemplate  # type: ignore
+from ._anvil_designer import PageClickGameTemplate  # type: ignore
 
 # from anvil import *
 
 
-class PagePotionsGame(PagePotionsGameTemplate):
+
+class PageClickGame(PageClickGameTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)

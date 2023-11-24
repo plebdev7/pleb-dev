@@ -18,6 +18,11 @@ components:
     type: Link
     layout_properties: {}
     event_bindings: {click: nav_link_click}
+  - name: link_click
+    properties: {icon: 'fa:mouse-pointer'}
+    type: Link
+    layout_properties: {}
+    event_bindings: {click: nav_link_click}
   - name: link_potions
     properties: {icon: 'fa:flask'}
     type: Link
