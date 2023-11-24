@@ -1,5 +1,3 @@
-
-
 class Page:
     # Assigned in FormHome
     GamesList = None
