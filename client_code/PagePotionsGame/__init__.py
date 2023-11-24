@@ -1,5 +1,7 @@
-from ._anvil_designer import PagePotionsGameTemplate
-from anvil import *
+from ._anvil_designer import PagePotionsGameTemplate  # type: ignore
+
+# from anvil import *
+
 
 class PagePotionsGame(PagePotionsGameTemplate):
     def __init__(self, **properties):
