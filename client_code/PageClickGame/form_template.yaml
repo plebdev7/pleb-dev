@@ -1,11 +1,11 @@
 container: {type: ColumnPanel}
 components:
 - name: label_1
-  properties: {role: headline, text: click}
+  properties: {role: headline, text: click, background: ''}
   type: Label
   layout_properties: {grid_position: 'ZLWJTP,SCCAIP'}
 - name: outlined_card_1
-  properties: {role: outlined-card}
+  properties: {role: outlined-card, background: 'theme:Primary Container'}
   type: ColumnPanel
   layout_properties: {grid_position: 'JFSWXH,KNXLOU', full_width_row: false}
   components:
@@ -32,13 +32,13 @@ components:
       type: Label
       layout_properties: {}
   - name: button_click
-    properties: {text: click, role: filled-button, font_size: 24, bold: true}
+    properties: {text: click, role: filled-button, font_size: 24, bold: true, background: 'theme:Primary'}
     type: Button
     layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
     data_bindings: []
     event_bindings: {click: button_click_click}
 - name: outlined_card_2
-  properties: {role: outlined-card}
+  properties: {role: outlined-card, background: 'theme:Primary Container'}
   type: ColumnPanel
   layout_properties: {grid_position: 'HPQVQQ,SGPTPX'}
   components:
@@ -51,7 +51,7 @@ components:
     type: RepeatingPanel
     layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
 - name: outlined_card_3
-  properties: {role: outlined-card}
+  properties: {role: outlined-card, background: 'theme:Primary Container'}
   type: ColumnPanel
   layout_properties: {grid_position: 'HPQVQQ,ZTCBAM'}
   components:
