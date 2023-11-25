@@ -3,4 +3,4 @@ class CG:
     gain = 0
     tick = 2.0
 
-    
+    upgrades = {}

@@ -1,6 +1,7 @@
 from ._anvil_designer import PageClickGameTemplate  # type: ignore
 from .ClickGame import CG
-from .Generator import Generator
+from .Generator import Generators
+from .Upgrade import Upgrades
 
 # from anvil import *
 
@@ -11,12 +12,8 @@ class PageClickGame(PageClickGameTemplate):
         self.init_components(**properties)
 
         self.timer.interval = CG.tick
-
-        self.repeating_panel_generators.items = [
-            Generator('generator a', 1, 10),
-            Generator('generator b', 5, 100),
-            Generator('generator c', 20, 1000),
-        ]
+        self.repeating_panel_generators.items = Generators
+        self.repeating_panel_upgrades.items = Upgrades
 
     def update_display(self):
         self._update_gain()

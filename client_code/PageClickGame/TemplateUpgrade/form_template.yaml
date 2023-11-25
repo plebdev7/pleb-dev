@@ -10,12 +10,12 @@ components:
     properties: {role: title}
     type: Label
     layout_properties: {grid_position: 'SVHIHC,NLRDCQ QCNPCC,VQIHGY'}
-  - name: button_cost
+  - name: button_buy
     properties: {text: 'cost: 0', role: filled-button, font_size: 24, background: 'theme:Secondary',
       foreground: 'theme:On Secondary'}
     type: Button
     layout_properties: {grid_position: 'SVHIHC,AUOYMY'}
-    event_bindings: {click: button_cost_click}
+    event_bindings: {click: button_buy_click}
   - name: label_effect
     properties: {role: input-prompt}
     type: Label

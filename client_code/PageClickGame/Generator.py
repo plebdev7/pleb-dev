@@ -15,3 +15,9 @@ class Generator:
     def current_cost(self) -> int:
         cost = self.cost * self.cost_multi ** self.count
         return ceil(cost)
+
+Generators = [
+    Generator('generator a', 1, 10),
+    Generator('generator b', 5, 100),
+    Generator('generator c', 20, 1000),
+]
