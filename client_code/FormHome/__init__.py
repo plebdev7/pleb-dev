@@ -1,4 +1,4 @@
-from client_code.Controller import Page
+from ..Controller import Page
 from ._anvil_designer import FormHomeTemplate  # type: ignore
 
 # from anvil import *
@@ -15,7 +15,7 @@ class FormHome(FormHomeTemplate):
         self.link_potions.tag.page = Page.PotionsGame
 
         # set default page as Games List
-        self.content_panel.add_component(Page.GamesList)
+        self.content_panel.add_component(Page.ClickGame)
 
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
