@@ -1,4 +1,5 @@
 class CG:
-    Score = 0
+    score = 0
+    tick = 2.0
 
     
