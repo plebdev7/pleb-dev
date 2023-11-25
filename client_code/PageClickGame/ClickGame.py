@@ -1,3 +1,6 @@
+DEBUG = False
+
+
 class G:
     GENERATOR_A = 1
     GENERATOR_B = 2
@@ -24,3 +27,5 @@ class CG:
     click = 1
     tick = 2.0
 
+    if DEBUG:
+        score = 100

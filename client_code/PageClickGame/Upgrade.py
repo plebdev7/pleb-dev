@@ -17,7 +17,7 @@ class Upgrade:
         self.available = self.cost <= 100
 
     def is_visible(self) -> bool:
-        self.available = self.cost <= 100 or CG.score * 10 >= self.cost
+        self.available = self.available or self.cost <= 100 or CG.score * 10 >= self.cost
         return self.available and not self.purchased
     
     def apply_upgrade(self) -> None:

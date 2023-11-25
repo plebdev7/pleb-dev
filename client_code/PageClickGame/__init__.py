@@ -14,18 +14,16 @@ class PageClickGame(PageClickGameTemplate):
         self.init_components(**properties)
 
         self.timer.interval = CG.tick
-        self.repeating_panel_generators.items = Generators.values()
-        self.repeating_panel_upgrades.items = sorted(Upgrades.values(), key=lambda x: x.cost)
         self.update_display()
-
+        
     def update_display(self):
         self._update_gain()
         self.label_score.text = CG.score
         self.label_click.text = f"{CG.click} / click"
         self.label_gain.text = f"{CG.gain} / tick"
         self.label_tick.text = f"tick: {CG.tick:0.2f}s"
-        self.repeating_panel_generators.items = [item for item in self.repeating_panel_generators.items if item.is_visible()]
-        self.repeating_panel_upgrades.items = [item for item in self.repeating_panel_upgrades.items if item.is_visible()]
+        self.repeating_panel_generators.items = [item for item in Generators.values() if item.is_visible()]
+        self.repeating_panel_upgrades.items = [item for item in sorted(Upgrades.values(), key=lambda x: x.cost) if item.is_visible()]
 
     def upgrade(self, upgrade_type: int, upgrade_value: float):
         if upgrade_type == UT.CLICK_MULTI:
@@ -40,6 +38,9 @@ class PageClickGame(PageClickGameTemplate):
 
     def _update_gain(self):
         CG.gain = 0
+        if not self.repeating_panel_generators.items:
+            return
+        
         for item in self.repeating_panel_generators.items:
             CG.gain += item.apply()
     
