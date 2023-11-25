@@ -8,6 +8,8 @@ unique_ids:
     PagePotionsGame: '1700684234290417693397191.6701'
   modules:
     Controller: 66LVCGF2UK5TLKQJ3DZSHNWUMXAPCBMH
+    PageClickGame.ClickGame: '1700872089311929021212508.5687'
+    PageClickGame.Generator: '1700873970408876530867901.8741'
   server_modules: {}
   assets:
     standard-page.html: FY5QBEP4A7W7YWGZMKRXBGMUMOHFKHQX

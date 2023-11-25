@@ -1,4 +1,6 @@
 from ._anvil_designer import PageClickGameTemplate  # type: ignore
+from .ClickGame import CG
+from .Generator import Generator
 
 # from anvil import *
 
@@ -8,12 +10,29 @@ class PageClickGame(PageClickGameTemplate):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
 
-        self._score = 0
+        self.timer.interval = 2
 
-    def _update_score_label(self):
-        self.label_score.text = self._score
+        self.repeating_panel_generators.items = [
+            Generator('generator a', 1, 10),
+        ]
+
+    def update_display(self):
+        self.label_score.text = CG.Score
+        self.repeating_panel_generators.items = self.repeating_panel_generators.items
+    
+    def _refresh(self):
+        self.update_display()
+
+    def _update_score(self):
+        for item in self.repeating_panel_generators.items:
+            CG.Score += item.apply()
 
     def button_click_click(self, **event_args):
         """This method is called when the button is clicked"""
-        self._score += 1
-        self._update_score_label()
+        CG.Score += 1
+        self._refresh()
+
+    def timer_tick(self, **event_args):
+        """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
+        self._update_score()
+        self._refresh()

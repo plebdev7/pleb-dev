@@ -13,8 +13,13 @@ components:
     properties: {text: '0', role: display, align: center}
     type: Label
     layout_properties: {grid_position: 'VDZNRQ,WCIYLP'}
+  - name: timer
+    properties: {interval: 0.1}
+    type: Timer
+    layout_properties: {grid_position: 'METZFJ,ALWQKN'}
+    event_bindings: {tick: timer_tick}
   - name: button_click
-    properties: {text: Click Me!, role: filled-button, font_size: 24, bold: true}
+    properties: {text: click me!, role: filled-button, font_size: 24, bold: true}
     type: Button
     layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
     data_bindings: []
