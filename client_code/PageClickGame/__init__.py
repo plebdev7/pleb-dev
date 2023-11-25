@@ -12,8 +12,8 @@ class PageClickGame(PageClickGameTemplate):
         self.init_components(**properties)
 
         self.timer.interval = CG.tick
-        self.repeating_panel_generators.items = Generators
-        self.repeating_panel_upgrades.items = Upgrades
+        self.repeating_panel_generators.items = Generators.values()
+        self.repeating_panel_upgrades.items = Upgrades.values()
 
     def update_display(self):
         self._update_gain()
@@ -21,6 +21,7 @@ class PageClickGame(PageClickGameTemplate):
         self.label_gain.text = f"{CG.gain} / tick"
         self.label_tick.text = f"tick: {CG.tick}s"
         self.repeating_panel_generators.items = self.repeating_panel_generators.items
+        self.repeating_panel_upgrades.items = [item for item in self.repeating_panel_upgrades.items if not item.purchased]
     
     def _refresh(self):
         self.update_display()

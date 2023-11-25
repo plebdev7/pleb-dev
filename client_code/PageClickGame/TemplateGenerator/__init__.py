@@ -21,5 +21,6 @@ class TemplateGenerator(TemplateGeneratorTemplate):
         """This method is called when the button is clicked"""
         CG.score -= self.item.cost
         self.item.count += 1
+        
         self.update_display()
         Page.ClickGame.update_display()

@@ -1,5 +1,8 @@
 from math import ceil
 
+from .ClickGame import G, UT
+
+
 class Generator:
     def __init__(self, name: str, effect: int, cost: int):
         self.name = name
@@ -16,8 +19,13 @@ class Generator:
         cost = self.cost * self.cost_multi ** self.count
         return ceil(cost)
 
-Generators = [
-    Generator('generator a', 1, 10),
-    Generator('generator b', 5, 100),
-    Generator('generator c', 20, 1000),
-]
+    def upgrade(self, upgrade_type: int, upgrade_value: float):
+        if upgrade_type == UT.GENERATOR_MULTI:
+            self.effect = ceil(self.effect * upgrade_value)
+
+
+Generators = {
+    G.GENERATOR_A: Generator('generator a', 1, 10),
+    G.GENERATOR_B: Generator('generator b', 5, 100),
+    G.GENERATOR_C: Generator('generator c', 20, 1000),
+}
