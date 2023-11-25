@@ -1,5 +1,5 @@
 from .Generator import Generator, Generators
-from .ClickGame import G, U, UT
+from .ClickGame import CG, G, U, UT
 from ..Controller import Page
 
 
@@ -14,7 +14,12 @@ class Upgrade:
         self.upgrade_value = upgrade_value
         
         self.purchased = False
+        self.available = self.cost <= 100
 
+    def is_visible(self) -> bool:
+        self.available = self.cost <= 100 or CG.score * 10 >= self.cost
+        return self.available and not self.purchased
+    
     def apply_upgrade(self) -> None:
         self.purchased = True
         if not self.upgrade_target:

@@ -11,6 +11,12 @@ class Generator:
         self.count = 0
         self.cost_multi = 1.4
 
+        self.available = self.cost <= 100
+
+    def is_visible(self) -> bool:
+        self.available = self.cost <= 100 or CG.score * 10 >= self.cost
+        return self.available
+    
     def apply(self) -> int:
         value = self.count * self.effect
         return value
