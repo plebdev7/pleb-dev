@@ -7,17 +7,13 @@ components:
   layout_properties: {grid_position: 'QFHIFF,EUGWLN'}
   components:
   - name: label_name
-    properties: {role: title}
+    properties: {role: input-prompt, spacing_above: none, spacing_below: none}
     type: Label
-    layout_properties: {grid_position: 'MJQDUY,PXTVSJ GQNNKH,DBHAZT'}
+    layout_properties: {grid_position: 'MJQDUY,PXTVSJ'}
   - name: button_buy
     properties: {role: filled-button, enabled: true, foreground: 'theme:On Secondary',
-      visible: true, text: 'cost: 0', font_size: 24, font: '', spacing_above: small,
-      spacing_below: small, background: 'theme:Secondary', bold: false}
+      visible: true, text: 'cost: 0', font_size: 18, font: '', spacing_above: none,
+      spacing_below: none, background: 'theme:Secondary', bold: false}
     type: Button
     layout_properties: {grid_position: 'MJQDUY,CRBRPO'}
     event_bindings: {click: button_buy_click}
-  - name: label_effect
-    properties: {role: input-prompt}
-    type: Label
-    layout_properties: {grid_position: 'MJQDUY,PXTVSJ ADUKYG,UCVLFK'}

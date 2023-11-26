@@ -1,4 +1,4 @@
-from math import ceil
+from math import floor, ceil
 
 from ._anvil_designer import PageClickGameTemplate  # type: ignore
 from .ClickGame import CG
@@ -19,7 +19,7 @@ class PageClickGame(PageClickGameTemplate):
     def update_display(self):
         self._update_gain()
         self.label_score.text = CG.score
-        self.label_click.text = f"{CG.click} / click"
+        self.label_click.text = f"{floor(CG.click + CG.click_percent * CG.gain)} / click"
         self.label_gain.text = f"{CG.gain} / tick"
         self.label_tick.text = f"tick: {CG.tick:0.2f}s"
         self.repeating_panel_generators.items = [item for item in Generators.values() if item.is_visible()]
@@ -28,6 +28,8 @@ class PageClickGame(PageClickGameTemplate):
     def upgrade(self, upgrade_type: int, upgrade_value: float):
         if upgrade_type == UT.CLICK_MULTI:
             CG.click = ceil(CG.click * upgrade_value)
+        elif upgrade_type == UT.CLICK_PERCENT:
+            CG.click_percent += upgrade_value 
         elif upgrade_type == UT.TICK_PERCENT:
             CG.tick = CG.tick / (1.0 + upgrade_value)
             self.timer.interval = CG.tick
@@ -49,7 +51,7 @@ class PageClickGame(PageClickGameTemplate):
 
     def button_click_click(self, **event_args):
         """This method is called when the button is clicked"""
-        CG.score += CG.click
+        CG.score += floor(CG.click + CG.click_percent * CG.gain)
         self._refresh()
 
     def timer_tick(self, **event_args):

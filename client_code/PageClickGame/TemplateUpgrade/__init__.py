@@ -12,8 +12,14 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
 
     def update_display(self):
         self.label_name.text = f"{self.item.name}"
-        self.label_effect.text = f"{self.item.effect}"
         self.button_buy.text = f"cost: {self.item.cost}"
+        
+
+        tooltip = f"{self.item.effect}"
+        self.tooltip = tooltip
+        self.label_name.tooltip = tooltip
+        self.button_buy.tooltip = tooltip
+
         self.button_buy.enabled = CG.score >= self.item.cost
 
     def button_buy_click(self, **event_args):

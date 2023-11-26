@@ -34,5 +34,9 @@ Generators = {
     G.GENERATOR_A: Generator('generator a', 1, 10),
     G.GENERATOR_B: Generator('generator b', 5, 100),
     G.GENERATOR_C: Generator('generator c', 20, 1500),
-    G.GENERATOR_D: Generator('generator d')
+    G.GENERATOR_D: Generator('generator d', 100, 30000),
+    G.GENERATOR_E: Generator('generator e', 500, 750000),
+    G.GENERATOR_F: Generator('generator f', 2000, 22500000),
+    G.GENERATOR_G: Generator('generator g', 10000, 787500000),
+    G.GENERATOR_H: Generator('generator h', 50000, 31500000000),
 }

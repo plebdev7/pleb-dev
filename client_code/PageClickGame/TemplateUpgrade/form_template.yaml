@@ -7,16 +7,12 @@ components:
   layout_properties: {grid_position: 'XTSLMW,LPLLFQ'}
   components:
   - name: label_name
-    properties: {role: title}
+    properties: {role: input-prompt, spacing_below: none, spacing_above: none}
     type: Label
-    layout_properties: {grid_position: 'SVHIHC,NLRDCQ QCNPCC,VQIHGY'}
+    layout_properties: {grid_position: 'SVHIHC,NLRDCQ VQDZDM,KWOEMY'}
   - name: button_buy
-    properties: {text: 'cost: 0', role: filled-button, font_size: 24, background: 'theme:Secondary',
-      foreground: 'theme:On Secondary'}
+    properties: {text: 'cost: 10000', role: filled-button, font_size: 18, background: 'theme:Secondary',
+      foreground: 'theme:On Secondary', spacing_below: none, spacing_above: none}
     type: Button
     layout_properties: {grid_position: 'SVHIHC,AUOYMY'}
     event_bindings: {click: button_buy_click}
-  - name: label_effect
-    properties: {role: input-prompt}
-    type: Label
-    layout_properties: {grid_position: 'SVHIHC,NLRDCQ IFKHBN,WFMYBT'}
