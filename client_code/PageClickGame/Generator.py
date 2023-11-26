@@ -33,5 +33,6 @@ class Generator:
 Generators = {
     G.GENERATOR_A: Generator('generator a', 1, 10),
     G.GENERATOR_B: Generator('generator b', 5, 100),
-    G.GENERATOR_C: Generator('generator c', 20, 1000),
+    G.GENERATOR_C: Generator('generator c', 20, 1500),
+    G.GENERATOR_D: Generator('generator d')
 }

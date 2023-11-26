@@ -5,6 +5,10 @@ class G:
     GENERATOR_A = 1
     GENERATOR_B = 2
     GENERATOR_C = 3
+    GENERATOR_D = 4
+    GENERATOR_E = 5
+    GENERATOR_F = 6
+    F
 
 
 class U:
