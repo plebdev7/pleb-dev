@@ -11,14 +11,21 @@ class TemplateGenerator(TemplateGeneratorTemplate):
         self.update_display()
 
     def update_display(self):
-        self.label_name.text = f"{self.item.name} ({self.item.count})"
-        self.label_effect.text = f"{self.item.effect}/tick"
-        self.button_buy.text = f"cost: {self.item.cost}"
-        self.button_buy.enabled = CG.Score >= self.item.cost
+        cost = self.item.current_cost()
+        self.label_name.text = f"{self.item.name} ({self.item.count})"        
+        self.button_buy.text = f"cost: {cost}"
+
+        tooltip = f"{self.item.effect}/tick"
+        self.tooltip = tooltip
+        self.label_name.tooltip = tooltip
+        self.button_buy.tooltip = tooltip
+        
+        self.button_buy.enabled = CG.score >= cost
     
     def button_buy_click(self, **event_args):
         """This method is called when the button is clicked"""
-        CG.Score -= self.item.cost
+        CG.score -= self.item.current_cost()
         self.item.count += 1
+        
         self.update_display()
         Page.ClickGame.update_display()

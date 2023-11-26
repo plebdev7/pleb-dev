@@ -1,13 +1,29 @@
 from ._anvil_designer import TemplateUpgradeTemplate
 from anvil import *
 
+from ..ClickGame import CG
+from ...Controller import Page
+
 class TemplateUpgrade(TemplateUpgradeTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
+        self.update_display()
 
-        # Any code you write here will run before the form opens.
+    def update_display(self):
+        self.label_name.text = f"{self.item.name}"
+        self.button_buy.text = f"cost: {self.item.cost}"
+        
 
-    def button_cost_click(self, **event_args):
+        tooltip = f"{self.item.effect}"
+        self.tooltip = tooltip
+        self.label_name.tooltip = tooltip
+        self.button_buy.tooltip = tooltip
+
+        self.button_buy.enabled = CG.score >= self.item.cost
+
+    def button_buy_click(self, **event_args):
         """This method is called when the button is clicked"""
-        pass
+        CG.score -= self.item.cost
+        self.item.apply_upgrade()        
+        Page.ClickGame.update_display()

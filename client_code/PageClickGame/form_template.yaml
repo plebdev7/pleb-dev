@@ -1,11 +1,11 @@
 container: {type: ColumnPanel}
 components:
 - name: label_1
-  properties: {role: headline, text: click}
+  properties: {role: headline, text: click, background: ''}
   type: Label
   layout_properties: {grid_position: 'ZLWJTP,SCCAIP'}
 - name: outlined_card_1
-  properties: {role: outlined-card}
+  properties: {role: outlined-card, background: 'theme:Primary Container'}
   type: ColumnPanel
   layout_properties: {grid_position: 'JFSWXH,KNXLOU', full_width_row: false}
   components:
@@ -18,14 +18,31 @@ components:
     type: Timer
     layout_properties: {grid_position: 'METZFJ,ALWQKN'}
     event_bindings: {tick: timer_tick}
+  - name: flow_panel_1
+    properties: {align: center, spacing: huge}
+    type: FlowPanel
+    layout_properties: {grid_position: 'OUCNAB,ARGAZR'}
+    components:
+    - name: label_click
+      properties: {text: 1 / click, role: input-prompt}
+      type: Label
+      layout_properties: {}
+    - name: label_gain
+      properties: {text: 0 / tick, role: input-prompt}
+      type: Label
+      layout_properties: {}
+    - name: label_tick
+      properties: {text: 'tick: 2.0s', role: input-prompt}
+      type: Label
+      layout_properties: {}
   - name: button_click
-    properties: {text: click me!, role: filled-button, font_size: 24, bold: true}
+    properties: {text: click, role: filled-button, font_size: 24, bold: true, background: 'theme:Primary'}
     type: Button
     layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
     data_bindings: []
     event_bindings: {click: button_click_click}
 - name: outlined_card_2
-  properties: {role: outlined-card}
+  properties: {role: outlined-card, background: 'theme:Primary Container'}
   type: ColumnPanel
   layout_properties: {grid_position: 'HPQVQQ,SGPTPX'}
   components:
@@ -38,7 +55,7 @@ components:
     type: RepeatingPanel
     layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
 - name: outlined_card_3
-  properties: {role: outlined-card}
+  properties: {role: outlined-card, background: 'theme:Primary Container'}
   type: ColumnPanel
   layout_properties: {grid_position: 'HPQVQQ,ZTCBAM'}
   components:
