@@ -1,5 +1,7 @@
 is_package: true
-container: {type: ColumnPanel}
+container:
+  type: ColumnPanel
+  properties: {spacing_below: none, spacing_above: none}
 components:
 - name: outlined_card_1
   properties: {role: outlined-card, background: 'theme:Secondary Container'}
