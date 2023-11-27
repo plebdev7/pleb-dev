@@ -28,3 +28,5 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
         CG.score -= self.item.cost
         self.item.apply_upgrade()        
         Page.ClickGame.update_display()
+
+        self.parent.raise_event('x-refresh-upgrade-order')

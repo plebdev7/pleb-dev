@@ -14,7 +14,10 @@ class PageClickGame(PageClickGameTemplate):
         self.init_components(**properties)
 
         self.timer.interval = CG.tick
-        self.update_display()
+        self.repeating_panel_generators.items = Generators.values()
+        self.refresh_upgrade_order()
+
+        self.repeating_panel_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
         
     def update_display(self):
         self._update_gain()
@@ -23,13 +26,15 @@ class PageClickGame(PageClickGameTemplate):
         self.label_gain.text = f"{CG.gain} / tick"
         self.label_tick.text = f"tick: {CG.tick:0.2f}s"
 
-        generators = [item for item in Generators.values() if item.is_visible()]        
-        #if self.repeating_panel_generators.items != generators:
-        self.repeating_panel_generators.items = generators
-
-        upgrades = [item for item in sorted(Upgrades.values(), key=lambda x: x.cost) if item.is_visible()]
-        # if self.repeating_panel_upgrades.items != upgrades:
-        self.repeating_panel_upgrades.items = upgrades
+        for generator_panel in self.repeating_panel_generators.get_components():
+            generator_panel.visible = generator_panel.item.is_visible()
+            if generator_panel.visible:
+                generator_panel.update_display()
+                
+        for upgrade_panel in self.repeating_panel_upgrades.get_components():
+            upgrade_panel.visible = upgrade_panel.item.is_visible()
+            if upgrade_panel.visible:
+                upgrade_panel.update_display()
 
     def upgrade(self, upgrade_type: int, upgrade_value: float):
         if upgrade_type == UT.CLICK_MULTI:
@@ -55,6 +60,10 @@ class PageClickGame(PageClickGameTemplate):
     def _update_score(self):
         CG.score += CG.gain
 
+    def refresh_upgrade_order(self, **event_args):
+        self.repeating_panel_upgrades.items = sorted(Upgrades.values(), key=lambda x: x.cost)
+        self.update_display()
+    
     def button_click_click(self, **event_args):
         """This method is called when the button is clicked"""
         CG.score += floor(CG.click + CG.click_percent * CG.gain)
