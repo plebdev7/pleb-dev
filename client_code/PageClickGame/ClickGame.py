@@ -40,5 +40,8 @@ class CG:
     click_percent = 0.0
     tick = 2.0
 
+    update_generators = True
+    update_upgrades = True
+
     if DEBUG:
         score = 100

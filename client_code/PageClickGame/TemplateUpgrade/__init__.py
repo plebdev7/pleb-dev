@@ -24,6 +24,7 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
 
     def button_buy_click(self, **event_args):
         """This method is called when the button is clicked"""
+        self.button_buy.enabled = False
         CG.score -= self.item.cost
         self.item.apply_upgrade()        
         Page.ClickGame.update_display()

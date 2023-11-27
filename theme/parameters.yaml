@@ -49,6 +49,16 @@ roles:
   components: [TextBox, TextArea, DatePicker, DropDown]
 - name: input-error
   components: [TextBox, TextArea, DatePicker, DropDown]
+- name: outlined-card-tight
+  components: [ColumnPanel, RepeatingPanel, XYPanel, LinearPanel]
+- name: outlined-button-tight
+  components: [Button, FileLoader]
+- name: filled-button-tight
+  components: [Button, FileLoader]
+- name: elevated-button-tight
+  components: [Button, FileLoader]
+- name: tonal-button-tight
+  components: [Button, FileLoader]
 color_scheme:
   preset_groups:
   - name: Colour Scheme

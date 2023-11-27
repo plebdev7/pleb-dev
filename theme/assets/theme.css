@@ -635,6 +635,7 @@ button.close > span, button.close {
   color: %color:Primary%;
 }
 
+
 .anvil-role-filled-button > .btn, .btn-primary, .anvil-role-filled-button.file-loader>label {
   background-color: %color:Primary%;
   color: %color:On Primary%; 
@@ -712,7 +713,6 @@ button.close > span, button.close {
   background-color: transparent;
 }
 
-
 /* Component: Card */
 
 .anvil-role-outlined-card {
@@ -737,6 +737,15 @@ button.close > span, button.close {
   background-color: %color:Surface Variant%;
   padding: 15px;
 }
+
+.anvil-role-outlined-card-tight {
+  overflow: hidden;
+  border-radius: 12px;
+  background-color: %color:Surface%;
+  border: solid 1px %color:Outline%;
+  padding: 5px;
+}
+
 
 
 /* full_width_row sections go full bleed */

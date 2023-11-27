@@ -42,7 +42,7 @@ components:
     data_bindings: []
     event_bindings: {click: button_click_click}
 - name: outlined_card_2
-  properties: {role: outlined-card, background: 'theme:Primary Container', col_spacing: tiny}
+  properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: tiny}
   type: ColumnPanel
   layout_properties: {grid_position: 'HPQVQQ,SGPTPX'}
   components:
@@ -55,7 +55,7 @@ components:
     type: RepeatingPanel
     layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
 - name: outlined_card_3
-  properties: {role: outlined-card, background: 'theme:Primary Container', col_spacing: tiny}
+  properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: small}
   type: ColumnPanel
   layout_properties: {grid_position: 'HPQVQQ,ZTCBAM'}
   components:

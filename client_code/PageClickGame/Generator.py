@@ -10,7 +10,7 @@ class Generator:
         self.cost = cost
         self.count = 0
         self.cost_multi = 1.4
-
+        
         self.available = self.cost <= 100
 
     def is_visible(self) -> bool:
