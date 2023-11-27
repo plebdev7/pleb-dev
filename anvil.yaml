@@ -1,4 +1,7 @@
-dependencies: []
+dependencies:
+- dep_id: dep_3qz4gmlndx8n3k7
+  version: {dev: false}
+  resolution_hints: {app_id: IL2NWBLQAHSCEBPH, name: Progress Bar, package_name: ProgressBar}
 services:
 - source: /runtime/services/tables.yml
   client_config: {}
@@ -7,8 +10,12 @@ startup: {type: form, module: FormHome}
 package_name: pleb_dev
 allow_embedding: false
 name: pleb.dev
-runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox,
-  server_spec: null}
+runtime_options:
+  version: 2
+  client_version: '3'
+  server_version: python3-sandbox
+  server_spec: {base: python310-standard}
+  server_spec_disabled: {requirements: '', base: python310-minimal}
 metadata: {title: pleb.dev, description: Games for Plebs}
 startup_form: null
 renamed: true
