@@ -46,12 +46,14 @@ components:
     properties: {text: generators, role: filled-button}
     type: Button
     layout_properties: {}
+    event_bindings: {click: button_tab_click}
   - name: button_clickometer
     properties: {text: '???
 
-        ', role: tonal-button, background: '', enabled: false, tooltip: unlock at 100000}
+        ', role: tonal-button, background: '', enabled: false, tooltip: ''}
     type: Button
     layout_properties: {}
+    event_bindings: {click: button_tab_click}
 - name: outlined_card_4
   properties: {role: outlined-card-tight, spacing_above: none}
   type: ColumnPanel

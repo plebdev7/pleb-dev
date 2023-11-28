@@ -33,6 +33,11 @@ class UT:
     TICK_PERCENT = 4
 
 
+class TAB:
+    GENERATORS = 1
+    CLICKOMETER = 2
+
+
 class CG:
     score = 0
     gain = 0
