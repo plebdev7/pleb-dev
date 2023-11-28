@@ -1,4 +1,4 @@
-DEBUG = False
+DEBUG = True
 
 
 class G:
@@ -44,4 +44,4 @@ class CG:
     update_upgrades = True
 
     if DEBUG:
-        score = 100
+        score = 99999

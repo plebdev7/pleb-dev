@@ -4,6 +4,8 @@ from ._anvil_designer import PagePotionsGameTemplate  # type: ignore
 
 
 class PagePotionsGame(PagePotionsGameTemplate):
+    TITLE = 'potions'
+    
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)

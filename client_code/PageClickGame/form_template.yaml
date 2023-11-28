@@ -1,9 +1,5 @@
 container: {type: ColumnPanel}
 components:
-- name: label_1
-  properties: {role: headline, text: click, background: ''}
-  type: Label
-  layout_properties: {grid_position: 'ZLWJTP,SCCAIP'}
 - name: outlined_card_1
   properties: {role: outlined-card, background: 'theme:Primary Container'}
   type: ColumnPanel
@@ -41,30 +37,52 @@ components:
     layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
     data_bindings: []
     event_bindings: {click: button_click_click}
-- name: outlined_card_2
-  properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: tiny}
-  type: ColumnPanel
-  layout_properties: {grid_position: 'HPQVQQ,SGPTPX'}
+- name: flow_panel_2
+  properties: {spacing_below: none, spacing: tiny}
+  type: FlowPanel
+  layout_properties: {grid_position: 'YLSOCV,IVEUST'}
   components:
-  - name: label_2
-    properties: {text: Generators, role: title, icon: 'fa:gear'}
-    type: Label
-    layout_properties: {grid_position: 'JQWTKD,NUESNZ'}
-  - name: repeating_panel_generators
-    properties: {item_template: PageClickGame.TemplateGenerator}
-    type: RepeatingPanel
-    layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
-- name: outlined_card_3
-  properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: small}
+  - name: button_generators
+    properties: {text: generators, role: filled-button}
+    type: Button
+    layout_properties: {}
+  - name: button_clickometer
+    properties: {text: '???
+
+        ', role: tonal-button, background: '', enabled: false, tooltip: unlock at 100000}
+    type: Button
+    layout_properties: {}
+- name: outlined_card_4
+  properties: {role: outlined-card-tight, spacing_above: none}
   type: ColumnPanel
-  layout_properties: {grid_position: 'HPQVQQ,ZTCBAM'}
+  layout_properties: {grid_position: 'GJXXXQ,JAHARE'}
   components:
-  - name: label_3
-    properties: {text: Upgrades, icon: 'fa:angle-double-up', role: title}
-    type: Label
-    layout_properties: {grid_position: 'VRBMMK,HXSMEU'}
-  - name: repeating_panel_upgrades
-    properties: {item_template: PageClickGame.TemplateUpgrade}
-    type: RepeatingPanel
-    layout_properties: {grid_position: 'IKDUSD,BCARXF'}
+  - name: outlined_card_2
+    properties: {role: outlined-card-tight, background: 'theme:Primary Container',
+      col_spacing: tiny, spacing_above: none}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'GKNSHS,DZNTND'}
+    components:
+    - name: label_2
+      properties: {text: Generators, role: title, icon: 'fa:gear'}
+      type: Label
+      layout_properties: {grid_position: 'JQWTKD,NUESNZ'}
+    - name: repeating_panel_generators
+      properties: {item_template: PageClickGame.TemplateGenerator}
+      type: RepeatingPanel
+      layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
+  - name: outlined_card_3
+    properties: {role: outlined-card-tight, background: 'theme:Primary Container',
+      col_spacing: small, spacing_above: none}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'GKNSHS,TEVHEY'}
+    components:
+    - name: label_3
+      properties: {text: Upgrades, icon: 'fa:angle-double-up', role: title}
+      type: Label
+      layout_properties: {grid_position: 'VRBMMK,HXSMEU'}
+    - name: repeating_panel_upgrades
+      properties: {item_template: PageClickGame.TemplateUpgrade}
+      type: RepeatingPanel
+      layout_properties: {grid_position: 'IKDUSD,BCARXF'}
 is_package: true

@@ -9,6 +9,8 @@ from .Upgrade import Upgrades, UT
 
 
 class PageClickGame(PageClickGameTemplate):
+    TITLE = 'click'
+    
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
         self.init_components(**properties)

@@ -3,7 +3,7 @@ from ._anvil_designer import PageGamesListTemplate  # type: ignore
 from anvil import get_open_form
 
 
-class PageGamesList(PageGamesListTemplate):
+class PageGamesList(PageGamesListTemplate):    
     def __init__(self, **properties):             
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
