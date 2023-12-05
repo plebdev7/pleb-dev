@@ -39,6 +39,7 @@ class TAB:
 
 
 class CG:
+    game = None
     score = 0
     gain = 0
     click = 1

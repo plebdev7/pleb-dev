@@ -14,16 +14,15 @@ class PageClickGame(PageClickGameTemplate):
     
     def __init__(self, **properties):
         self.init_components(**properties)
-
+        CG.game = self
+        
         # setup timer
         self.timer.interval = CG.tick
 
-        # set tab ID tags
-        self.button_generators.tag.id = TAB.GENERATORS
-        self.button_clickometer.tag.id = TAB.CLICKOMETER
+        # set tab button tags
+        self.button_generators.tag.tab = TAB.GENERATORS
+        self.button_clickometer.tag.tab = TAB.CLICKOMETER
         self.tab_buttons = [self.button_generators, self.button_clickometer]
-
-        # setup tabs
         
         # setup generators tab
         self.repeating_panel_generators.items = Generators.values()
@@ -34,16 +33,7 @@ class PageClickGame(PageClickGameTemplate):
         
 
         # final display update at startup
-        self.update_display()
-
-    def upgrade(self, upgrade_type: int, upgrade_value: float):
-        if upgrade_type == UT.CLICK_MULTI:
-            CG.click = ceil(CG.click * upgrade_value)
-        elif upgrade_type == UT.CLICK_PERCENT:
-            CG.click_percent += upgrade_value 
-        elif upgrade_type == UT.TICK_PERCENT:
-            CG.tick = CG.tick / (1.0 + upgrade_value)
-            self.timer.interval = CG.tick
+        Tabs[TAB.GENERATORS].activate()
         self.update_display()
     
     def update_display(self):
@@ -55,13 +45,14 @@ class PageClickGame(PageClickGameTemplate):
 
         self._update_tabs()
         self._update_generators_tab()
+        self._update_clickometer_tab()
 
     def _refresh(self):
         self.update_display()
     
     def _update_tabs(self):
         for tab_button in self.tab_buttons:
-            tab = Tabs[tab_button.tag.id]
+            tab = Tabs[tab_button.tag.tab]
             if not tab.unlocked:
                 tab_button.tooltip = f"unlock at {tab.cost}"
                 if tab.check_unlocked():
@@ -79,6 +70,9 @@ class PageClickGame(PageClickGameTemplate):
             upgrade_panel.visible = upgrade_panel.item.is_visible()
             if upgrade_panel.visible:
                 upgrade_panel.update_display()
+
+    def _update_clickometer_tab(self):
+        pass
     
     def _update_gain(self):
         CG.gain = 0
@@ -108,6 +102,6 @@ class PageClickGame(PageClickGameTemplate):
         self._refresh()
 
     def button_tab_click(self, **event_args):
-        self.button_generators.role = 'tonal-button'
-        self.button_clickometer.role = 'tonal-button'
-        event_args['sender'].role = 'filled-button'
+        tab = event_args['sender'].tag.tab
+        Tabs[tab].activate()
+        

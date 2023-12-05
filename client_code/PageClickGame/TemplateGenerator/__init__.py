@@ -2,7 +2,6 @@ from ._anvil_designer import TemplateGeneratorTemplate
 from anvil import *
 
 from ..ClickGame import CG
-from ...Controller import Page
 
 class TemplateGenerator(TemplateGeneratorTemplate):
     def __init__(self, **properties):
@@ -29,4 +28,4 @@ class TemplateGenerator(TemplateGeneratorTemplate):
         self.item.count += 1
         
         self.update_display()
-        Page.ClickGame.update_display()
+        CG.game.update_display()
