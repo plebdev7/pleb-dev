@@ -38,8 +38,14 @@ class TAB:
     CLICKOMETER = 2
 
 
+class STATE:
+    BASE = 1
+    CLICKOMETER = 2
+
+
 class CG:
     game = None
+    state = STATE.BASE
 
     core_points = 0
     click_points = 0
@@ -53,6 +59,8 @@ class CG:
     click_percent = 0.0
 
     clickometer_gain = 1
+    clickometer_progress = 0
+    clickometer_max = 100
 
     update_generators = True
     update_upgrades = True

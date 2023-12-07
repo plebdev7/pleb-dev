@@ -1,7 +1,7 @@
 from math import floor, ceil
 
 from ._anvil_designer import PageClickGameTemplate  # type: ignore
-from .ClickGame import CG, TAB
+from .ClickGame import CG, TAB, STATE
 from .Generator import Generators
 from .Tab import Tabs
 from .Upgrade import Upgrades, UT
@@ -38,10 +38,18 @@ class PageClickGame(PageClickGameTemplate):
     
     def update_display(self):
         self._update_tick_gain()
+        
         self.label_core_points.text = CG.core_points
-        self.label_click_gain.text = f"{floor(CG.click_gain + CG.click_percent * CG.tick_gain)} / click"
+        self.label_click_points.text = f"{CG.click_points} clicks"
+        self.label_clickometer_points.text = f"{CG.clickometer_points} bars"
+        
         self.label_tick_gain.text = f"{CG.tick_gain} / tick"
         self.label_tick_time.text = f"tick: {CG.tick_time:0.2f}s"
+
+        self.label_click_gain.text = f"{floor(CG.click_gain + CG.click_percent * CG.tick_gain)} / click"
+
+        self.progress_clickometer.progress = CG.clickometer_progress / float(CG.clickometer_max)
+        self.label_clickometer_progress.text = f"{CG.clickometer_progress} / {CG.clickometer_max}"
 
         self._update_tabs()
         self._update_generators_tab()
@@ -94,6 +102,13 @@ class PageClickGame(PageClickGameTemplate):
     def button_click_click(self, **event_args):
         """This method is called when the button is clicked"""
         CG.core_points += floor(CG.click_gain + CG.click_percent * CG.tick_gain)
+        if CG.state >= STATE.CLICKOMETER:
+            CG.click_points += 1
+            CG.clickometer_progress += 1
+            if CG.clickometer_progress >= CG.clickometer_max:
+                CG.clickometer_points += 1
+                CG.clickometer_progress -= CG.clickometer_max
+                CG.clickometer_max = int(CG.clickometer_max * 1.01)
         self._refresh()
 
     def timer_tick(self, **event_args):

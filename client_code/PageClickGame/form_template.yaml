@@ -14,6 +14,19 @@ components:
     - properties: {text: '0', role: display, align: center, icon: ''}
       type: Label
       name: label_core_points
+    - name: column_panel_clickometer
+      properties: {visible: false, col_spacing: none, spacing_above: none, spacing_below: none}
+      type: ColumnPanel
+      components:
+      - name: label_click_points
+        properties: {text: 0 clicks, role: input-prompt, spacing_below: none, spacing_above: none}
+        type: Label
+        layout_properties: {grid_position: 'JTFHOZ,GNDQUR'}
+      - name: label_clickometer_points
+        properties: {text: 0 bars, role: input-prompt, spacing_below: none, spacing_above: none}
+        type: Label
+        layout_properties: {grid_position: 'NOPMHX,AOSAMK'}
+      layout_properties: {}
   - properties: {interval: 0.1}
     type: Timer
     layout_properties: {grid_position: 'METZFJ,ALWQKN'}
@@ -40,8 +53,9 @@ components:
       layout_properties: {}
       name: label_click_gain
     - name: label_click_time
-      properties: {}
+      properties: {visible: false}
       type: Label
+      layout_properties: {}
   - properties: {text: click, role: filled-button, font_size: 24, bold: true, background: 'theme:Primary'}
     type: Button
     layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
@@ -111,14 +125,14 @@ components:
       type: Label
       layout_properties: {grid_position: 'RTZEHD,ITKZJC'}
       name: label_4
-    - properties: {}
+    - properties: {progress: 0}
       type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
       layout_properties: {grid_position: 'UNDNUC,QXQIJH'}
-      name: determinate_1
+      name: progress_clickometer
     - properties: {align: center, text: 0 / 100}
       type: Label
       layout_properties: {grid_position: 'CIQYKE,SMBBJX'}
-      name: label_1
+      name: label_clickometer_progress
   - properties: {role: outlined-card-tight, background: 'theme:Primary Container'}
     type: ColumnPanel
     layout_properties: {grid_position: 'LGSTBX,VTLSOP'}
