@@ -17,7 +17,7 @@ class PageClickGame(PageClickGameTemplate):
         CG.game = self
         
         # setup timer
-        self.timer.interval = CG.tick
+        self.timer.interval = CG.tick_time
 
         # set tab button tags
         self.button_generators.tag.tab = TAB.GENERATORS
@@ -37,11 +37,11 @@ class PageClickGame(PageClickGameTemplate):
         self.update_display()
     
     def update_display(self):
-        self._update_gain()
-        self.label_score.text = CG.score
-        self.label_click.text = f"{floor(CG.click + CG.click_percent * CG.gain)} / click"
-        self.label_gain.text = f"{CG.gain} / tick"
-        self.label_tick.text = f"tick: {CG.tick:0.2f}s"
+        self._update_tick_gain()
+        self.label_core_points.text = CG.core_points
+        self.label_click_gain.text = f"{floor(CG.click_gain + CG.click_percent * CG.tick_gain)} / click"
+        self.label_tick_gain.text = f"{CG.tick_gain} / tick"
+        self.label_tick_time.text = f"tick: {CG.tick_time:0.2f}s"
 
         self._update_tabs()
         self._update_generators_tab()
@@ -74,16 +74,16 @@ class PageClickGame(PageClickGameTemplate):
     def _update_clickometer_tab(self):
         pass
     
-    def _update_gain(self):
-        CG.gain = 0
+    def _update_tick_gain(self):
+        CG.tick_gain = 0
         if not self.repeating_panel_generators.items:
             return
         
         for item in self.repeating_panel_generators.items:
-            CG.gain += item.apply()
+            CG.tick_gain += item.apply()
     
-    def _update_score(self):
-        CG.score += CG.gain
+    def _update_core_points(self):
+        CG.core_points += CG.tick_gain
 
     # Callbacks
 
@@ -93,12 +93,12 @@ class PageClickGame(PageClickGameTemplate):
     
     def button_click_click(self, **event_args):
         """This method is called when the button is clicked"""
-        CG.score += floor(CG.click + CG.click_percent * CG.gain)
+        CG.core_points += floor(CG.click_gain + CG.click_percent * CG.tick_gain)
         self._refresh()
 
     def timer_tick(self, **event_args):
         """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
-        self._update_score()
+        self._update_core_points()
         self._refresh()
 
     def button_tab_click(self, **event_args):

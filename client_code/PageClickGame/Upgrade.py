@@ -20,7 +20,7 @@ class Upgrade:
         self.available = self.cost <= 100
 
     def is_visible(self) -> bool:
-        self.available = self.available or self.cost <= 100 or CG.score * 10 >= self.cost
+        self.available = self.available or self.cost <= 100 or CG.core_points * 10 >= self.cost
         return self.available
     
     def apply_upgrade(self) -> None:
@@ -34,12 +34,12 @@ class Upgrade:
 
     def upgrade(self, upgrade_type: int, upgrade_value: float):
         if upgrade_type == UT.CLICK_MULTI:
-            CG.click = ceil(CG.click * upgrade_value)
+            CG.click_gain = ceil(CG.click_gain * upgrade_value)
         elif upgrade_type == UT.CLICK_PERCENT:
             CG.click_percent += upgrade_value 
         elif upgrade_type == UT.TICK_PERCENT:
-            CG.tick = CG.tick / (1.0 + upgrade_value)
-            Page.ClickGame.timer.interval = CG.tick
+            CG.tick_time = CG.tick_time / (1.0 + upgrade_value)
+            Page.ClickGame.timer.interval = CG.tick_time
         Page.ClickGame.update_display()
 
 

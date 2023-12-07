@@ -40,14 +40,22 @@ class TAB:
 
 class CG:
     game = None
-    score = 0
-    gain = 0
-    click = 1
+
+    core_points = 0
+    click_points = 0
+    clickometer_points = 0
+    
+    tick_gain = 0
+    tick_time = 2.0
+
+    click_gain = 1
+    click_time = 0
     click_percent = 0.0
-    tick = 2.0
+
+    clickometer_gain = 1
 
     update_generators = True
     update_upgrades = True
 
     if DEBUG:
-        score = 99999
+        core_points = 99999

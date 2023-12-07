@@ -8,7 +8,7 @@ class Tab:
         self.unlocked = False
 
     def check_unlocked(self):
-        if CG.score >= self.cost:
+        if CG.core_points >= self.cost:
             self.unlocked = True
         return self.unlocked
 

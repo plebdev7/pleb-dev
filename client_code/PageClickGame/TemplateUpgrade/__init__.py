@@ -19,12 +19,12 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
         self.label_name.tooltip = tooltip
         self.button_buy.tooltip = tooltip
 
-        self.button_buy.enabled = CG.score >= self.item.cost
+        self.button_buy.enabled = CG.core_points >= self.item.cost
 
     def button_buy_click(self, **event_args):
         """This method is called when the button is clicked"""
         self.button_buy.enabled = False
-        CG.score -= self.item.cost
+        CG.core_points -= self.item.cost
         self.item.apply_upgrade()        
         CG.game.update_display()
 

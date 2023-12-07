@@ -19,12 +19,12 @@ class TemplateGenerator(TemplateGeneratorTemplate):
         self.label_name.tooltip = tooltip
         self.button_buy.tooltip = tooltip
         
-        self.button_buy.enabled = CG.score >= cost
+        self.button_buy.enabled = CG.core_points >= cost
     
     def button_buy_click(self, **event_args):
         """This method is called when the button is clicked"""
         self.button_buy.enabled = False
-        CG.score -= self.item.current_cost()
+        CG.core_points -= self.item.current_cost()
         self.item.count += 1
         
         self.update_display()
