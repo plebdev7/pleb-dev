@@ -2,7 +2,6 @@ from ._anvil_designer import TemplateUpgradeTemplate
 from anvil import *
 
 from ..ClickGame import CG
-from ...Controller import Page
 
 class TemplateUpgrade(TemplateUpgradeTemplate):
     def __init__(self, **properties):
@@ -24,6 +23,9 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
 
     def button_buy_click(self, **event_args):
         """This method is called when the button is clicked"""
+        self.button_buy.enabled = False
         CG.score -= self.item.cost
         self.item.apply_upgrade()        
-        Page.ClickGame.update_display()
+        CG.game.update_display()
+
+        self.parent.raise_event('x-refresh-upgrade-order')

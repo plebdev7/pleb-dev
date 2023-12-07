@@ -2,12 +2,11 @@ from ._anvil_designer import TemplateGeneratorTemplate
 from anvil import *
 
 from ..ClickGame import CG
-from ...Controller import Page
 
 class TemplateGenerator(TemplateGeneratorTemplate):
     def __init__(self, **properties):
         # Set Form properties and Data Bindings.
-        self.init_components(**properties)        
+        self.init_components(**properties) 
         self.update_display()
 
     def update_display(self):
@@ -24,8 +23,9 @@ class TemplateGenerator(TemplateGeneratorTemplate):
     
     def button_buy_click(self, **event_args):
         """This method is called when the button is clicked"""
+        self.button_buy.enabled = False
         CG.score -= self.item.current_cost()
         self.item.count += 1
         
         self.update_display()
-        Page.ClickGame.update_display()
+        CG.game.update_display()

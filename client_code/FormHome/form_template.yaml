@@ -28,7 +28,7 @@ components:
     type: Link
     layout_properties: {}
     event_bindings: {click: nav_link_click}
-- name: label_1
+- name: label_title
   properties: {text: pleb.dev, role: title}
   type: Label
   layout_properties: {slot: title}

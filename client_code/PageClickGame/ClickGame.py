@@ -1,4 +1,4 @@
-DEBUG = False
+DEBUG = True
 
 
 class G:
@@ -33,12 +33,21 @@ class UT:
     TICK_PERCENT = 4
 
 
+class TAB:
+    GENERATORS = 1
+    CLICKOMETER = 2
+
+
 class CG:
+    game = None
     score = 0
     gain = 0
     click = 1
     click_percent = 0.0
     tick = 2.0
 
+    update_generators = True
+    update_upgrades = True
+
     if DEBUG:
-        score = 100
+        score = 99999

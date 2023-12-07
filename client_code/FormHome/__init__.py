@@ -15,7 +15,7 @@ class FormHome(FormHomeTemplate):
         self.link_potions.tag.page = Page.PotionsGame
 
         # set default page as Games List
-        self.content_panel.add_component(Page.ClickGame)
+        self.open_game(Page.ClickGame)
 
         # Set Form properties and Data Bindings.
         self.init_components(**properties)
@@ -28,5 +28,8 @@ class FormHome(FormHomeTemplate):
 
     def open_game(self, page):
         # set content to selected page based on nav link click
+        self.label_title.text = f"pleb.dev"
+        if hasattr(page, 'TITLE'):
+            self.label_title.text = f"pleb.dev - {page.TITLE}"
         self.content_panel.clear()
         self.content_panel.add_component(page)

@@ -27,9 +27,20 @@ class Upgrade:
         self.available = False
         self.purchased += 1
         self.cost = ceil(self.cost * self.upgrade_multi)
-        if not self.upgrade_target:
-            self.upgrade_target = Page.ClickGame
-        self.upgrade_target.upgrade(self.upgrade_type, self.upgrade_value)
+        target = self
+        if self.upgrade_target:
+            target = self.upgrade_target
+        target.upgrade(self.upgrade_type, self.upgrade_value)
+
+    def upgrade(self, upgrade_type: int, upgrade_value: float):
+        if upgrade_type == UT.CLICK_MULTI:
+            CG.click = ceil(CG.click * upgrade_value)
+        elif upgrade_type == UT.CLICK_PERCENT:
+            CG.click_percent += upgrade_value 
+        elif upgrade_type == UT.TICK_PERCENT:
+            CG.tick = CG.tick / (1.0 + upgrade_value)
+            Page.ClickGame.timer.interval = CG.tick
+        Page.ClickGame.update_display()
 
 
 Upgrades = {
