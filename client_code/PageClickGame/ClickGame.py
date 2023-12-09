@@ -24,6 +24,9 @@ class U:
     CLICK_2X = 9
     CLICK_TP = 10
     TICK_5P = 11
+
+class C:
+    CLICK_UPGRADE_AUTO = 1
     
 
 class UT:
