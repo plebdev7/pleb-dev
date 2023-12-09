@@ -42,9 +42,9 @@ class PageClickGame(PageClickGameTemplate):
 
         # final display update at startup
         Tabs[TAB.GENERATORS].activate()
-        self.update_display()
+        self._update_display()
     
-    def update_display(self):
+    def _update_display(self):
         self._update_tick_gain()
         
         self.label_core_points.text = CG.core_points
@@ -60,11 +60,10 @@ class PageClickGame(PageClickGameTemplate):
         self.label_clickometer_progress.text = f"{CG.clickometer_progress} / {CG.clickometer_max}"
 
         self._update_tabs()
+        self._update_upgrades()
         self._update_generators_tab()
+        self._update_click_upgrades_tab()
         self._update_clickometer_tab()
-
-    def _refresh(self):
-        self.update_display()
     
     def _update_tabs(self):
         for tab_button in self.tab_buttons:
@@ -76,16 +75,19 @@ class PageClickGame(PageClickGameTemplate):
                     tab_button.enabled = True
                     tab_button.tooltip = None
     
+    def _update_upgrades(self):
+        for upgrade_panel in self.repeating_panel_upgrades.get_components():
+            upgrade_panel.visible = upgrade_panel.item.is_visible()
+            if upgrade_panel.visible:
+                upgrade_panel.update_display()
+    
     def _update_generators_tab(self):
         for generator_panel in self.repeating_panel_generators.get_components():
             generator_panel.visible = generator_panel.item.is_visible()
             if generator_panel.visible:
                 generator_panel.update_display()
-                
-        for upgrade_panel in self.repeating_panel_upgrades.get_components():
-            upgrade_panel.visible = upgrade_panel.item.is_visible()
-            if upgrade_panel.visible:
-                upgrade_panel.update_display()
+
+    def _update_click_upgrades_tab()
 
     def _update_clickometer_tab(self):
         pass
@@ -97,33 +99,44 @@ class PageClickGame(PageClickGameTemplate):
         
         for item in self.repeating_panel_generators.items:
             CG.tick_gain += item.apply()
-    
-    def _update_core_points(self):
-        CG.core_points += CG.tick_gain
 
+    @staticmethod
+    def _update_points():
+        CG.core_points += CG.tick_gain + CG.click_gain * CG.click_point_gain
+        PageClickGame._apply_button_click_effect()
+
+    @staticmethod
+    def _apply_button_click_effect(manual: bool = False):
+        if manual:
+            click_point_multi = 1
+        else:
+            click_point_multi = CG.click_point_gain
+        
+        CG.core_points += floor(CG.click_gain + CG.click_percent * CG.tick_gain) * click_point_multi
+        if CG.state >= STATE.AUTO_CLICKER:
+            CG.click_points += click_point_multi
+        if CG.state >= STATE.CLICKOMETER:
+            CG.clickometer_progress += click_point_multi
+            if CG.clickometer_progress >= CG.clickometer_max:
+                CG.clickometer_points += CG.clickometer_gain
+                CG.clickometer_progress -= CG.clickometer_max
+                CG.clickometer_max = int(CG.clickometer_max * 1.01)
+    
     # Callbacks
 
     def refresh_upgrade_order(self, **event_args):
         self.repeating_panel_upgrades.items = sorted(Upgrades.values(), key=lambda x: x.cost)
-        self.update_display()
+        self._update_display()
     
     def button_click_click(self, **event_args):
         """This method is called when the button is clicked"""
-        CG.core_points += floor(CG.click_gain + CG.click_percent * CG.tick_gain)
-        if CG.state >= STATE.AUTO_CLICKER:
-            CG.click_points += 1
-        if CG.state >= STATE.CLICKOMETER:
-            CG.clickometer_progress += 1
-            if CG.clickometer_progress >= CG.clickometer_max:
-                CG.clickometer_points += 1
-                CG.clickometer_progress -= CG.clickometer_max
-                CG.clickometer_max = int(CG.clickometer_max * 1.01)
-        self._refresh()
+        self._apply_button_click_effect(True)
+        self._update_display()
 
     def timer_tick(self, **event_args):
         """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
-        self._update_core_points()
-        self._refresh()
+        self._update_points()
+        self._update_display()
 
     def button_tab_click(self, **event_args):
         tab = event_args['sender'].tag.tab
