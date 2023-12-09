@@ -35,12 +35,14 @@ class UT:
 
 class TAB:
     GENERATORS = 1
-    CLICKOMETER = 2
+    AUTO_CLICKER = 2
+    CLICKOMETER = 3
 
 
 class STATE:
     BASE = 1
-    CLICKOMETER = 2
+    AUTO_CLICKER = 2
+    CLICKOMETER = 3
 
 
 class CG:
@@ -66,4 +68,4 @@ class CG:
     update_upgrades = True
 
     if DEBUG:
-        core_points = 99999
+        core_points = 9999

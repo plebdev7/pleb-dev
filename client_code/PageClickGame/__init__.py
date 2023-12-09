@@ -19,18 +19,22 @@ class PageClickGame(PageClickGameTemplate):
         # setup timer
         self.timer.interval = CG.tick_time
 
-        # set tab button tags
+        # set tab button
         self.button_generators.tag.tab = TAB.GENERATORS
+        self.button_auto_clicker.tag.tab = TAB.AUTO_CLICKER
         self.button_clickometer.tag.tab = TAB.CLICKOMETER
-        self.tab_buttons = [self.button_generators, self.button_clickometer]
+        self.tab_buttons = [self.button_generators, self.button_auto_clicker, self.button_clickometer]
+        for tab_button in self.tab_buttons[1:]:
+            tab_button.enabled = False
         
         # setup generators tab
         self.repeating_panel_generators.items = Generators.values()
         self.refresh_upgrade_order()
         self.repeating_panel_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
 
-        # setup clickometer tab
+        # setup auto clicker tab
         
+        # setup clickometer tab        
 
         # final display update at startup
         Tabs[TAB.GENERATORS].activate()
