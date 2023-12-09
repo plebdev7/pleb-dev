@@ -42,9 +42,9 @@ class PageClickGame(PageClickGameTemplate):
 
         # final display update at startup
         Tabs[TAB.GENERATORS].activate()
-        self._update_display()
+        self.update_display()
     
-    def _update_display(self):
+    def update_display(self):
         self._update_tick_gain()
         
         self.label_core_points.text = CG.core_points
@@ -87,7 +87,11 @@ class PageClickGame(PageClickGameTemplate):
             if generator_panel.visible:
                 generator_panel.update_display()
 
-    def _update_click_upgrades_tab()
+    def _update_click_upgrades_tab(self):
+        for click_upgrade_panel in self.repeating_panel_click_upgrades.get_components():
+            click_upgrade_panel.visible = click_upgrade_panel.item.is_visible()
+            if click_upgrade_panel.visible:
+                click_upgrade_panel.update_display()
 
     def _update_clickometer_tab(self):
         pass
@@ -126,17 +130,17 @@ class PageClickGame(PageClickGameTemplate):
 
     def refresh_upgrade_order(self, **event_args):
         self.repeating_panel_upgrades.items = sorted(Upgrades.values(), key=lambda x: x.cost)
-        self._update_display()
+        self.update_display()
     
     def button_click_click(self, **event_args):
         """This method is called when the button is clicked"""
         self._apply_button_click_effect(True)
-        self._update_display()
+        self.update_display()
 
     def timer_tick(self, **event_args):
         """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
         self._update_points()
-        self._update_display()
+        self.update_display()
 
     def button_tab_click(self, **event_args):
         tab = event_args['sender'].tag.tab
