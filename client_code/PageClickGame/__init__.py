@@ -2,9 +2,10 @@ from math import floor, ceil
 
 from ._anvil_designer import PageClickGameTemplate  # type: ignore
 from .ClickGame import CG, TAB, STATE
+from .ClickUpgrade import ClickUpgrades
 from .Generator import Generators
 from .Tab import Tabs
-from .Upgrade import Upgrades, UT
+from .Upgrade import Upgrades
 
 # from anvil import *
 
@@ -27,12 +28,15 @@ class PageClickGame(PageClickGameTemplate):
         for tab_button in self.tab_buttons[1:]:
             tab_button.enabled = False
         
-        # setup generators tab
-        self.repeating_panel_generators.items = Generators.values()
+        # setup upgrades
         self.refresh_upgrade_order()
         self.repeating_panel_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
+        
+        # setup generators tab
+        self.repeating_panel_generators.items = Generators.values()
 
         # setup auto clicker tab
+        self.repeating_panel_click_upgrades.items = ClickUpgrades.values()
         
         # setup clickometer tab        
 
@@ -106,8 +110,9 @@ class PageClickGame(PageClickGameTemplate):
     def button_click_click(self, **event_args):
         """This method is called when the button is clicked"""
         CG.core_points += floor(CG.click_gain + CG.click_percent * CG.tick_gain)
-        if CG.state >= STATE.CLICKOMETER:
+        if CG.state >= STATE.AUTO_CLICKER:
             CG.click_points += 1
+        if CG.state >= STATE.CLICKOMETER:
             CG.clickometer_progress += 1
             if CG.clickometer_progress >= CG.clickometer_max:
                 CG.clickometer_points += 1
