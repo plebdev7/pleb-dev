@@ -29,5 +29,5 @@ class ClickUpgrade:
 
 
 ClickUpgrades = {
-    C.CLICK_UPGRADE_AUTO: ClickUpgrade('auto click', 10)
+    C.CLICK_UPGRADE_AUTO: ClickUpgrade('auto click multi', 100)
 }

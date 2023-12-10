@@ -36,6 +36,7 @@ class PageClickGame(PageClickGameTemplate):
         self.repeating_panel_generators.items = Generators.values()
 
         # setup auto clicker tab
+        self.button_auto_click_unlock.enabled = False
         self.repeating_panel_click_upgrades.items = ClickUpgrades.values()
         
         # setup clickometer tab        
@@ -104,13 +105,11 @@ class PageClickGame(PageClickGameTemplate):
         for item in self.repeating_panel_generators.items:
             CG.tick_gain += item.apply()
 
-    @staticmethod
-    def _update_points():
+    def _update_points(self):
         CG.core_points += CG.tick_gain + CG.click_gain * CG.click_point_gain
-        PageClickGame._apply_button_click_effect()
+        self._apply_button_click_effect()
 
-    @staticmethod
-    def _apply_button_click_effect(manual: bool = False):
+    def _apply_button_click_effect(self, manual: bool = False):
         if manual:
             click_point_multi = 1
         else:
@@ -119,6 +118,7 @@ class PageClickGame(PageClickGameTemplate):
         CG.core_points += floor(CG.click_gain + CG.click_percent * CG.tick_gain) * click_point_multi
         if CG.state >= STATE.AUTO_CLICKER:
             CG.click_points += click_point_multi
+            self.button_auto_click_unlock.enabled = (CG.click_points >= 10)
         if CG.state >= STATE.CLICKOMETER:
             CG.clickometer_progress += click_point_multi
             if CG.clickometer_progress >= CG.clickometer_max:
