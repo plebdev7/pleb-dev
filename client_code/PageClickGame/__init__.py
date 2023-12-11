@@ -145,4 +145,10 @@ class PageClickGame(PageClickGameTemplate):
     def button_tab_click(self, **event_args):
         tab = event_args['sender'].tag.tab
         Tabs[tab].activate()
+
+    def button_auto_click_unlock_click(self, **event_args):
+        """This method is called when the button is clicked"""
+        self.outlined_card_auto_clicker_unlock.visible = False
+        CG.click_point_gain = 1
+        
         
