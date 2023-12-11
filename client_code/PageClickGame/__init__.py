@@ -48,14 +48,16 @@ class PageClickGame(PageClickGameTemplate):
     def update_display(self):
         self._update_tick_gain()
         
-        self.label_core_points.text = CG.core_points
+        self.label_core_points.text = f"{CG.core_points} points"
         self.label_click_points.text = f"{CG.click_points} clicks"
         self.label_clickometer_points.text = f"{CG.clickometer_points} bars"
         
-        self.label_tick_gain.text = f"{CG.tick_gain} / tick"
+        self.label_tick_gain.text = f"{CG.tick_gain} points / tick"
         self.label_tick_time.text = f"tick: {CG.tick_time:0.2f}s"
+        self.label_click_gain.text = f"{floor(CG.click_gain + CG.click_percent * CG.tick_gain)} points / click"
 
-        self.label_click_gain.text = f"{floor(CG.click_gain + CG.click_percent * CG.tick_gain)} / click"
+        self.label_clicks_per_click.text = f"{CG.click_point_gain} clicks / click"
+        self.label_clicks_per_tick.text = f"{CG.click_point_tick_gain} clicks / tick"
 
         self.progress_clickometer.progress = CG.clickometer_progress / float(CG.clickometer_max)
         self.label_clickometer_progress.text = f"{CG.clickometer_progress} / {CG.clickometer_max}"
@@ -106,15 +108,15 @@ class PageClickGame(PageClickGameTemplate):
             CG.tick_gain += item.apply()
 
     def _update_points(self):
-        CG.core_points += CG.tick_gain + CG.click_gain * CG.click_point_gain
+        CG.core_points += CG.tick_gain
         self._apply_button_click_effect()
 
     def _apply_button_click_effect(self, manual: bool = False):
         if manual:
-            click_point_multi = 1
-        else:
             click_point_multi = CG.click_point_gain
-        
+        else:
+            click_point_multi = CG.click_point_tick_gain
+
         CG.core_points += floor(CG.click_gain + CG.click_percent * CG.tick_gain) * click_point_multi
         if CG.state >= STATE.AUTO_CLICKER:
             CG.click_points += click_point_multi
@@ -129,26 +131,29 @@ class PageClickGame(PageClickGameTemplate):
     # Callbacks
 
     def refresh_upgrade_order(self, **event_args):
+        """callback for resorting the upgrade list order"""
         self.repeating_panel_upgrades.items = sorted(Upgrades.values(), key=lambda x: x.cost)
-        self.update_display()
-    
-    def button_click_click(self, **event_args):
-        """This method is called when the button is clicked"""
-        self._apply_button_click_effect(True)
         self.update_display()
 
     def timer_tick(self, **event_args):
         """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
         self._update_points()
         self.update_display()
-
+    
     def button_tab_click(self, **event_args):
+        """callback on tab button clicks"""
         tab = event_args['sender'].tag.tab
         Tabs[tab].activate()
+    
+    def button_click_click(self, **event_args):
+        """callback on click button clicked"""
+        self._apply_button_click_effect(True)
+        self.update_display()
 
     def button_auto_click_unlock_click(self, **event_args):
-        """This method is called when the button is clicked"""
+        """callback on auto click unlock"""
         self.outlined_card_auto_clicker_unlock.visible = False
-        CG.click_point_gain = 1
+        CG.click_point_tick_gain = 1
+        self.update_display()
         
         

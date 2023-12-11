@@ -63,7 +63,8 @@ class CG:
     click_time = 0
     click_percent = 0.0
 
-    click_point_gain = 0
+    click_point_gain = 1
+    click_point_tick_gain = 0
 
     clickometer_gain = 1
     clickometer_progress = 0
