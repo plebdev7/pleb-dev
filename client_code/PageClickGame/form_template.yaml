@@ -123,7 +123,7 @@ components:
       layout_properties: {grid_position: 'RTMTIM,KNPFTQ'}
       event_bindings: {click: button_auto_click_unlock_click}
   - name: repeating_panel_click_upgrades
-    properties: {item_template: PageClickGame.TemplateClickUpgrade}
+    properties: {item_template: PageClickGame.TemplateUpgrade}
     type: RepeatingPanel
     layout_properties: {grid_position: 'SEFFVP,MYQEDR'}
 - properties: {role: outlined-card-tight, background: 'theme:Primary Container', visible: true,
@@ -152,7 +152,7 @@ components:
     spacing_above: none}
   type: ColumnPanel
   layout_properties: {grid_position: 'ZPRUTR,PBMFAW'}
-  name: outlined_card_upgrades
+  name: outlined_card_core_upgrades
   components:
   - properties: {text: upgrades, icon: 'fa:angle-double-up', role: title}
     type: Label
@@ -161,4 +161,4 @@ components:
   - properties: {item_template: PageClickGame.TemplateUpgrade}
     type: RepeatingPanel
     layout_properties: {grid_position: 'IKDUSD,BCARXF'}
-    name: repeating_panel_upgrades
+    name: repeating_panel_core_upgrades

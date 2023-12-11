@@ -43,7 +43,7 @@ class Upgrade:
         Page.ClickGame.update_display()
 
 
-Upgrades = {
+CoreUpgrades = {
     U.UPGRADE_2X_A: Upgrade('upgrade a', '2x generator a', Generators[G.GENERATOR_A].cost * 5, Generators[G.GENERATOR_A], UT.GENERATOR_MULTI, 2.0, 17),
     U.UPGRADE_2X_B: Upgrade('upgrade b', '2x generator b', Generators[G.GENERATOR_B].cost * 6, Generators[G.GENERATOR_B], UT.GENERATOR_MULTI, 2.0, 18),
     U.UPGRADE_2X_C: Upgrade('upgrade c', '2x generator c', Generators[G.GENERATOR_C].cost * 7, Generators[G.GENERATOR_C], UT.GENERATOR_MULTI, 2.0, 19),

@@ -5,7 +5,7 @@ from .ClickGame import CG, TAB, STATE
 from .ClickUpgrade import ClickUpgrades
 from .Generator import Generators
 from .Tab import Tabs
-from .Upgrade import Upgrades
+from .Upgrade import CoreUpgrades
 
 # from anvil import *
 
@@ -30,7 +30,7 @@ class PageClickGame(PageClickGameTemplate):
         
         # setup upgrades
         self.refresh_upgrade_order()
-        self.repeating_panel_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
+        self.repeating_panel_core_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
         
         # setup generators tab
         self.repeating_panel_generators.items = Generators.values()
@@ -63,7 +63,7 @@ class PageClickGame(PageClickGameTemplate):
         self.label_clickometer_progress.text = f"{CG.clickometer_progress} / {CG.clickometer_max}"
 
         self._update_tabs()
-        self._update_upgrades()
+        self._update_core_upgrades()
         self._update_generators_tab()
         self._update_click_upgrades_tab()
         self._update_clickometer_tab()
@@ -78,8 +78,8 @@ class PageClickGame(PageClickGameTemplate):
                     tab_button.enabled = True
                     tab_button.tooltip = None
     
-    def _update_upgrades(self):
-        for upgrade_panel in self.repeating_panel_upgrades.get_components():
+    def _update_core_upgrades(self):
+        for upgrade_panel in self.repeating_panel_core_upgrades.get_components():
             upgrade_panel.visible = upgrade_panel.item.is_visible()
             if upgrade_panel.visible:
                 upgrade_panel.update_display()
@@ -132,7 +132,7 @@ class PageClickGame(PageClickGameTemplate):
 
     def refresh_upgrade_order(self, **event_args):
         """callback for resorting the upgrade list order"""
-        self.repeating_panel_upgrades.items = sorted(Upgrades.values(), key=lambda x: x.cost)
+        self.repeating_panel_core_upgrades.items = sorted(CoreUpgrades.values(), key=lambda x: x.cost)
         self.update_display()
 
     def timer_tick(self, **event_args):
