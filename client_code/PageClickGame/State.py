@@ -12,6 +12,10 @@ class StateAutoClicker(State):
     def enter(self):
         CG.game.column_panel_clicks.visible = True
 
+class StateAutoClickerBought(State):
+    def enter(self):
+        CG.game.panel_click_labels.visible = True
+
 class StateClickometer(State):
     def enter(self):
         CG.game.label_clickometer_points.visible = True
@@ -19,6 +23,7 @@ class StateClickometer(State):
 
 States = {
     STATE.AUTO_CLICKER: StateAutoClicker(),
+    STATE.AUTO_CLICKER_BOUGHT: StateAutoClickerBought(),
     STATE.CLICKOMETER: StateClickometer(),
 }
 

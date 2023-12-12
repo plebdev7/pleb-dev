@@ -13,27 +13,35 @@ class G:
 
 
 class U:
-    UPGRADE_2X_A = 1
-    UPGRADE_2X_B = 2
-    UPGRADE_2X_C = 3
-    UPGRADE_2X_D = 4
-    UPGRADE_2X_E = 5
-    UPGRADE_2X_F = 6
-    UPGRADE_2X_G = 7
-    UPGRADE_2X_H = 8
-    CLICK_2X = 9
-    CLICK_TP = 10
+    GEN_A_2X = 1
+    GEN_B_2X = 2
+    GEN_C_2X = 3
+    GEN_D_2X = 4
+    GEN_E_2X = 5
+    GEN_F_2X = 6
+    GEN_G_2X = 7
+    GEN_H_2X = 8
+    CLICK_CORE_2X = 9
+    CLICK_BY_TICK = 10
     TICK_5P = 11
 
-class C:
-    CLICK_UPGRADE_AUTO = 1
+    CLICK_CLICK_2x = 1001
+    CLICK_TICK_2x = 1002
     
 
 class UT:
     GENERATOR_MULTI = 1
-    CLICK_MULTI = 2
-    CLICK_PERCENT = 3
+    CLICK_CORE_MULTI = 2
+    CLICK_CORE_PERCENT = 3
     TICK_PERCENT = 4
+    
+    CLICK_CLICK_MULTI = 1001
+    CLICK_TICK_MULTI = 1002
+
+
+class UC:
+    SCORE = 1
+    CLICKS = 2
 
 
 class TAB:
@@ -45,7 +53,8 @@ class TAB:
 class STATE:
     BASE = 1
     AUTO_CLICKER = 2
-    CLICKOMETER = 3
+    AUTO_CLICKER_BOUGHT = 3
+    CLICKOMETER = 4
 
 
 class CG:

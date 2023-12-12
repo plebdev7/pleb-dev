@@ -1,7 +1,7 @@
 from ._anvil_designer import TemplateUpgradeTemplate
 from anvil import *
 
-from ..ClickGame import CG
+from ..ClickGame import CG, UC
 
 class TemplateUpgrade(TemplateUpgradeTemplate):
     def __init__(self, **properties):
@@ -10,21 +10,23 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
         self.update_display()
 
     def update_display(self):
-        self.label_name.text = f"{self.item.name}"
-        self.button_buy.text = f"cost: {self.item.cost}"
+        cost_type = 'points'
+        if self.item.cost_type == UC.CLICKS:
+            cost_type = 'clicks'
         
+        self.label_name.text = f"{self.item.name}"
+        self.label_effect.text = f"{self.item.effect}"
+        self.button_buy.text = f"{self.item.cost} {cost_type}"
 
-        tooltip = f"{self.item.effect}"
-        self.tooltip = tooltip
-        self.label_name.tooltip = tooltip
-        self.button_buy.tooltip = tooltip
-
-        self.button_buy.enabled = CG.core_points >= self.item.cost
+        self.button_buy.enabled = self.item.get_points() >= self.item.cost
 
     def button_buy_click(self, **event_args):
         """This method is called when the button is clicked"""
         self.button_buy.enabled = False
-        CG.core_points -= self.item.cost
+        if self.item.cost_type == UC.SCORE:
+            CG.core_points -= self.item.cost
+        elif self.item.cost_type == UC.CLICKS:
+            CG.click_points -= self.item.cost
         self.item.apply_upgrade()        
         CG.game.update_display()
 

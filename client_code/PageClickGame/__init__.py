@@ -2,10 +2,10 @@ from math import floor, ceil
 
 from ._anvil_designer import PageClickGameTemplate  # type: ignore
 from .ClickGame import CG, TAB, STATE
-from .ClickUpgrade import ClickUpgrades
 from .Generator import Generators
+from .State import activate_state
 from .Tab import Tabs
-from .Upgrade import CoreUpgrades
+from .Upgrade import CoreUpgrades, ClickUpgrades
 
 # from anvil import *
 
@@ -154,6 +154,8 @@ class PageClickGame(PageClickGameTemplate):
         """callback on auto click unlock"""
         self.outlined_card_auto_clicker_unlock.visible = False
         CG.click_point_tick_gain = 1
+        CG.click_points -= 10
+        activate_state(STATE.AUTO_CLICKER_BOUGHT)
         self.update_display()
         
         
