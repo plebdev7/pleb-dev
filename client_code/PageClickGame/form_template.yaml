@@ -144,10 +144,6 @@ components:
     type: Label
     layout_properties: {grid_position: 'CIQYKE,SMBBJX'}
     name: label_clickometer_progress
-  - name: repeating_panel_clickometer
-    properties: {item_template: PageClickGame.Template}
-    type: RepeatingPanel
-    layout_properties: {grid_position: 'KPKAQE,YNSUCS'}
 - properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: small,
     spacing_above: none}
   type: ColumnPanel

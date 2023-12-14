@@ -1,4 +1,4 @@
-DEBUG = False
+DEBUG = True
 
 
 class G:
@@ -27,6 +27,8 @@ class U:
 
     CLICK_CLICK_2x = 1001
     CLICK_TICK_2x = 1002
+    GEN_COST_5P = 1003
+    GEN_BONUS_5P = 1004
     
 
 class UT:
@@ -37,6 +39,8 @@ class UT:
     
     CLICK_CLICK_MULTI = 1001
     CLICK_TICK_MULTI = 1002
+    GEN_COST_PERCENT = 1003
+    GEN_BONUS_PERCENT = 1004
 
 
 class UC:
@@ -53,8 +57,7 @@ class TAB:
 class STATE:
     BASE = 1
     AUTO_CLICKER = 2
-    AUTO_CLICKER_BOUGHT = 3
-    CLICKOMETER = 4
+    CLICKOMETER = 3
 
 
 class CG:
@@ -83,4 +86,4 @@ class CG:
     update_upgrades = True
 
     if DEBUG:
-        core_points = 9999
+        core_points = 999999

@@ -31,13 +31,13 @@ class PageClickGame(PageClickGameTemplate):
         # setup upgrades
         self.refresh_upgrade_order()
         self.repeating_panel_core_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
+        self.repeating_panel_click_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
         
         # setup generators tab
         self.repeating_panel_generators.items = Generators.values()
 
         # setup auto clicker tab
         self.button_auto_click_unlock.enabled = False
-        self.repeating_panel_click_upgrades.items = ClickUpgrades.values()
         
         # setup clickometer tab        
 
@@ -91,6 +91,7 @@ class PageClickGame(PageClickGameTemplate):
                 generator_panel.update_display()
 
     def _update_click_upgrades_tab(self):
+        CG.game.panel_click_labels.visible = CG.click_point_tick_gain > 0
         for click_upgrade_panel in self.repeating_panel_click_upgrades.get_components():
             click_upgrade_panel.visible = click_upgrade_panel.item.is_visible()
             if click_upgrade_panel.visible:
@@ -133,6 +134,7 @@ class PageClickGame(PageClickGameTemplate):
     def refresh_upgrade_order(self, **event_args):
         """callback for resorting the upgrade list order"""
         self.repeating_panel_core_upgrades.items = sorted(CoreUpgrades.values(), key=lambda x: x.cost)
+        self.repeating_panel_click_upgrades.items = sorted(ClickUpgrades.values(), key=lambda x: x.cost)
         self.update_display()
 
     def timer_tick(self, **event_args):
@@ -155,7 +157,6 @@ class PageClickGame(PageClickGameTemplate):
         self.outlined_card_auto_clicker_unlock.visible = False
         CG.click_point_tick_gain = 1
         CG.click_points -= 10
-        activate_state(STATE.AUTO_CLICKER_BOUGHT)
         self.update_display()
         
         
