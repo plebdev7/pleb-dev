@@ -51,15 +51,15 @@ class PageClickGame(PageClickGameTemplate):
         self._update_tick_gain()
         
         self.label_core_points.text = f"{dispnum(CG.core_points)} points"
-        self.label_click_points.text = f"{CG.click_points} clicks"
-        self.label_clickometer_points.text = f"{CG.clickometer_points} bars"
+        self.label_click_points.text = f"{dispnum(CG.click_points)} clicks"
+        self.label_clickometer_points.text = f"{dispnum(CG.clickometer_points)} bars"
         
-        self.label_tick_gain.text = f"{CG.tick_gain} points / tick"
+        self.label_tick_gain.text = f"{dispnum(CG.tick_gain)} points / tick"
         self.label_tick_time.text = f"tick: {CG.tick_time:0.2f}s"
-        self.label_click_gain.text = f"{floor(CG.click_gain + CG.click_percent * CG.tick_gain)} points / click"
+        self.label_click_gain.text = f"{dispnum(floor(CG.click_gain + CG.click_percent * CG.tick_gain))} points / click"
 
-        self.label_clicks_per_click.text = f"{CG.click_point_gain} clicks / click"
-        self.label_clicks_per_tick.text = f"{CG.click_point_tick_gain} clicks / tick"
+        self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain)} clicks / click"
+        self.label_clicks_per_tick.text = f"{dispnum(CG.click_point_tick_gain)} clicks / tick"
 
         self.progress_clickometer.progress = CG.clickometer_progress / float(CG.clickometer_max)
         self.label_clickometer_progress.text = f"{CG.clickometer_progress} / {CG.clickometer_max}"

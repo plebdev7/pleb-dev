@@ -2,6 +2,7 @@ from ._anvil_designer import TemplateGeneratorTemplate
 from anvil import *
 
 from ..ClickGame import CG
+from ...Utilities import dispnum
 
 class TemplateGenerator(TemplateGeneratorTemplate):
     def __init__(self, **properties):
@@ -12,8 +13,8 @@ class TemplateGenerator(TemplateGeneratorTemplate):
     def update_display(self):
         cost = self.item.current_cost()
         self.label_name.text = f"{self.item.name} ({self.item.count})"    
-        self.label_effect.text = f"{self.item.effect} points / tick"
-        self.button_buy.text = f"{cost} points"
+        self.label_effect.text = f"{dispnum(self.item.effect)} points / tick"
+        self.button_buy.text = f"{dispnum(cost)} points"
         
         self.button_buy.enabled = CG.core_points >= cost
     

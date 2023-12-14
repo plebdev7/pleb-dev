@@ -2,6 +2,7 @@ from ._anvil_designer import TemplateUpgradeTemplate
 from anvil import *
 
 from ..ClickGame import CG, UC
+from ...Utilities import dispnum
 
 class TemplateUpgrade(TemplateUpgradeTemplate):
     def __init__(self, **properties):
@@ -16,7 +17,7 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
         
         self.label_name.text = f"{self.item.name}"
         self.label_effect.text = f"{self.item.effect}"
-        self.button_buy.text = f"{self.item.cost} {cost_type}"
+        self.button_buy.text = f"{dispnum(self.item.cost)} {cost_type}"
 
         self.button_buy.enabled = self.item.get_points() >= self.item.cost
 

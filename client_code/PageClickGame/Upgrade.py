@@ -80,8 +80,8 @@ CoreUpgrades = {
 }
 
 ClickUpgrades = {
-    U.CLICK_CLICK_2x: Upgrade('click clicks', '2x click count', 20, UC.CLICKS, None, UT.CLICK_CLICK_MULTI, 2.0, 4.1),
-    U.CLICK_TICK_2x: Upgrade('tick clicks', '2x tick clicks', 100, UC.CLICKS, None, UT.CLICK_TICK_MULTI, 2.0, 12.4),
+    U.CLICK_CLICK_2x: Upgrade('click clicks', '2x click count', 20, UC.CLICKS, None, UT.CLICK_CLICK_MULTI, 2.0, 4),
+    U.CLICK_TICK_2x: Upgrade('tick clicks', '2x tick clicks', 100, UC.CLICKS, None, UT.CLICK_TICK_MULTI, 2.0, 12),
     U.GEN_COST_5P: Upgrade('gen cost', '-5% generator cost', 50, UC.CLICKS, None, UT.GEN_COST_PERCENT, -0.05, 28),
-    U.GEN_BONUS_5P: Upgrade('gen bonus', '+5% gen points', 250, UC.CLICKS, None, UT.GEN_BONUS_PERCENT, 0.05, 17.2)
+    U.GEN_BONUS_5P: Upgrade('gen bonus', '+5% gen points', 250, UC.CLICKS, None, UT.GEN_BONUS_PERCENT, 0.05, 16)
 }
