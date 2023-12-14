@@ -7,6 +7,8 @@ from .State import activate_state
 from .Tab import Tabs
 from .Upgrade import CoreUpgrades, ClickUpgrades
 
+from ..Utilities import dispnum
+
 # from anvil import *
 
 
@@ -48,7 +50,7 @@ class PageClickGame(PageClickGameTemplate):
     def update_display(self):
         self._update_tick_gain()
         
-        self.label_core_points.text = f"{CG.core_points} points"
+        self.label_core_points.text = f"{dispnum(CG.core_points)} points"
         self.label_click_points.text = f"{CG.click_points} clicks"
         self.label_clickometer_points.text = f"{CG.clickometer_points} bars"
         
