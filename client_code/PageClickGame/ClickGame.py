@@ -1,4 +1,4 @@
-DEBUG = False
+DEBUG = True
 
 
 class G:
@@ -25,10 +25,12 @@ class U:
     CLICK_BY_TICK = 10
     TICK_5P = 11
 
-    CLICK_CLICK_2x = 1001
-    CLICK_TICK_2x = 1002
-    GEN_COST_5P = 1003
-    GEN_BONUS_5P = 1004
+    CLICK_CLICK_2X = 1001
+    CLICK_TICK_2X = 1002
+    CLICK_CORE_LOGX = 1003
+    CLICK_SCORE_10P = 1004
+    GEN_COST_5P = 1005
+    GEN_BONUS_5P = 1006
     
 
 class UT:
@@ -39,8 +41,10 @@ class UT:
     
     CLICK_CLICK_MULTI = 1001
     CLICK_TICK_MULTI = 1002
-    GEN_COST_PERCENT = 1003
-    GEN_BONUS_PERCENT = 1004
+    CLICK_CORE_LOGX = 1003
+    CLICK_SCORE_MULTI = 1004
+    GEN_COST_PERCENT = 1005
+    GEN_BONUS_PERCENT = 1006
 
 
 class UC:
@@ -74,9 +78,11 @@ class CG:
     click_gain = 1
     click_time = 0
     click_percent = 0.0
+    click_logx = 0
 
     click_point_gain = 1
     click_point_tick_gain = 0
+    click_point_percent = 0.0
 
     clickometer_gain = 1
     clickometer_progress = 0

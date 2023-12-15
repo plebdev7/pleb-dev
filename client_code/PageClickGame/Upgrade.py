@@ -55,6 +55,10 @@ class Upgrade:
             CG.click_point_gain = ceil(CG.click_point_gain * upgrade_value)
         elif upgrade_type == UT.CLICK_TICK_MULTI:
             CG.click_point_tick_gain = ceil(CG.click_point_tick_gain * upgrade_value)
+        elif upgrade_type == UT.CLICK_CORE_LOGX:
+            CG.click_logx += upgrade_value
+        elif upgrade_type == UT.CLICK_SCORE_MULTI:
+            CG.click_point_percent += upgrade_value
         elif upgrade_type == UT.GEN_COST_PERCENT:
             for generator in Generators.values():
                 generator.cost *= (1.0 + upgrade_value)
@@ -74,14 +78,16 @@ CoreUpgrades = {
     U.GEN_F_2X: Upgrade('gen f value', 'gen f 2x points', Generators[G.GENERATOR_F].cost * 10, UC.SCORE, Generators[G.GENERATOR_F], UT.GENERATOR_MULTI, 2.0, 18),
     U.GEN_G_2X: Upgrade('gen g value', 'gen g 2x points', Generators[G.GENERATOR_G].cost * 11, UC.SCORE, Generators[G.GENERATOR_G], UT.GENERATOR_MULTI, 2.0, 18),
     U.GEN_H_2X: Upgrade('gen h value', 'gen h 2x points', Generators[G.GENERATOR_H].cost * 12, UC.SCORE, Generators[G.GENERATOR_H], UT.GENERATOR_MULTI, 2.0, 18),
-    U.CLICK_CORE_2X: Upgrade('click value', '2x click points', 20, UC.SCORE, None, UT.CLICK_CORE_MULTI, 2.0, 3),
-    U.CLICK_BY_TICK: Upgrade('click by tick', 'click +1% gen points', 1000, UC.SCORE, None, UT.CLICK_CORE_PERCENT, 0.01, 15),
+    U.CLICK_CORE_2X: Upgrade('click value', '2x pts/click', 20, UC.SCORE, None, UT.CLICK_CORE_MULTI, 2.0, 3),
+    U.CLICK_BY_TICK: Upgrade('click by tick', '+1% gen points/click', 1000, UC.SCORE, None, UT.CLICK_CORE_PERCENT, 0.01, 15),
     U.TICK_5P: Upgrade('tick speed', '+5% tick speed', 100, UC.SCORE, None, UT.TICK_PERCENT, 0.05, 6),
 }
 
 ClickUpgrades = {
-    U.CLICK_CLICK_2x: Upgrade('click clicks', '2x click count', 20, UC.CLICKS, None, UT.CLICK_CLICK_MULTI, 2.0, 4),
-    U.CLICK_TICK_2x: Upgrade('tick clicks', '2x tick clicks', 100, UC.CLICKS, None, UT.CLICK_TICK_MULTI, 2.0, 12),
+    U.CLICK_CLICK_2X: Upgrade('click clicks', '2x clicks/click', 20, UC.CLICKS, None, UT.CLICK_CLICK_MULTI, 2.0, 3),
+    U.CLICK_TICK_2X: Upgrade('tick clicks', '2x clicks/tick', 100, UC.CLICKS, None, UT.CLICK_TICK_MULTI, 2.0, 8),
+    U.CLICK_CORE_LOGX: Upgrade('click val log', '+log(clicks)% pts/click', 500, UC.CLICKS, None, UT.CLICK_CORE_LOGX, 1, 36),
+    U.CLICK_SCORE_10P: Upgrade('click points', '+10% click pts', 30, UC.CLICKS, None, UT.CLICK_SCORE_MULTI, 0.1, 2.5),
     U.GEN_COST_5P: Upgrade('gen cost', '-5% generator cost', 50, UC.CLICKS, None, UT.GEN_COST_PERCENT, -0.05, 28),
     U.GEN_BONUS_5P: Upgrade('gen bonus', '+5% gen points', 250, UC.CLICKS, None, UT.GEN_BONUS_PERCENT, 0.05, 16)
 }

@@ -1,4 +1,4 @@
-from math import floor, ceil
+from math import floor, ceil, log2
 
 from ._anvil_designer import PageClickGameTemplate  # type: ignore
 from .ClickGame import CG, TAB, STATE
@@ -56,7 +56,7 @@ class PageClickGame(PageClickGameTemplate):
         
         self.label_tick_gain.text = f"{dispnum(CG.tick_gain)} points / tick"
         self.label_tick_time.text = f"tick: {CG.tick_time:0.2f}s"
-        self.label_click_gain.text = f"{dispnum(floor(CG.click_gain + CG.click_percent * CG.tick_gain))} points / click"
+        self.label_click_gain.text = f"{dispnum(self._click_gain())} points / click"
 
         self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain)} clicks / click"
         self.label_clicks_per_tick.text = f"{dispnum(CG.click_point_tick_gain)} clicks / tick"
@@ -74,7 +74,7 @@ class PageClickGame(PageClickGameTemplate):
         for tab_button in self.tab_buttons:
             tab = Tabs[tab_button.tag.tab]
             if not tab.unlocked:
-                tab_button.tooltip = f"unlock at {tab.cost}"
+                tab_button.tooltip = f"unlock at {dispnum(tab.cost)}"
                 if tab.check_unlocked():
                     tab_button.text = tab.name                    
                     tab_button.enabled = True
@@ -110,20 +110,29 @@ class PageClickGame(PageClickGameTemplate):
         for item in self.repeating_panel_generators.items:
             CG.tick_gain += item.apply()
 
-    def _update_points(self):
-        CG.core_points += CG.tick_gain
-        self._apply_button_click_effect()
-
+    def _click_gain(self) -> int:
+        gain = CG.click_gain
+        if CG.click_percent > 0 and CG.tick_gain > 0:
+            gain += CG.click_percent * CG.tick_gain
+        if CG.click_logx > 0 and CG.click_points > 0:
+            gain *= (1 + CG.click_logx * log2(CG.click_points) / 100.0)
+        return floor(gain)
+    
     def _apply_button_click_effect(self, manual: bool = False):
         if manual:
             click_point_multi = CG.click_point_gain
         else:
             click_point_multi = CG.click_point_tick_gain
 
-        CG.core_points += floor(CG.click_gain + CG.click_percent * CG.tick_gain) * click_point_multi
+        # update core points
+        CG.core_points += self._click_gain() * click_point_multi
+
+        # update click points
         if CG.state >= STATE.AUTO_CLICKER:
-            CG.click_points += click_point_multi
+            CG.click_points += click_point_multi * (1.0 + CG.click_point_percent)
             self.button_auto_click_unlock.enabled = (CG.click_points >= 10)
+
+        # update clickometer progress
         if CG.state >= STATE.CLICKOMETER:
             CG.clickometer_progress += click_point_multi
             if CG.clickometer_progress >= CG.clickometer_max:
@@ -141,7 +150,8 @@ class PageClickGame(PageClickGameTemplate):
 
     def timer_tick(self, **event_args):
         """This method is called Every [interval] seconds. Does not trigger if [interval] is 0."""
-        self._update_points()
+        CG.core_points += CG.tick_gain
+        self._apply_button_click_effect()
         self.update_display()
     
     def button_tab_click(self, **event_args):
