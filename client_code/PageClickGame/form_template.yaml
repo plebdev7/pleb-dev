@@ -47,6 +47,20 @@ components:
     - properties: {text: 'tick: 2.0s', role: input-prompt}
       type: Label
       name: label_tick_time
+  - name: grid_panel_1
+    properties: {spacing_above: none, spacing_below: none}
+    type: GridPanel
+    layout_properties: {grid_position: 'OUCNAB,ARBDTC EOSOUN,SUKMGI'}
+    components:
+    - properties: {progress: 0}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}
+      name: progress_clickometer
+    - properties: {align: center, text: 'clickometer: 0 / 100', spacing_above: none,
+        spacing_below: none}
+      type: Label
+      layout_properties: {row: SRBZYX, width_xs: 12, col_xs: 0}
+      name: label_clickometer_progress
   - properties: {align: center, spacing: huge, visible: false}
     type: FlowPanel
     layout_properties: {grid_position: 'OUCNAB,ESDRMU'}
@@ -136,14 +150,6 @@ components:
     type: Label
     layout_properties: {grid_position: 'RTZEHD,ITKZJC'}
     name: label_4
-  - properties: {progress: 0}
-    type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
-    layout_properties: {grid_position: 'UNDNUC,QXQIJH'}
-    name: progress_clickometer
-  - properties: {align: center, text: 0 / 100}
-    type: Label
-    layout_properties: {grid_position: 'CIQYKE,SMBBJX'}
-    name: label_clickometer_progress
 - properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: small,
     spacing_above: none}
   type: ColumnPanel
