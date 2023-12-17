@@ -60,12 +60,12 @@ class PageClickGame(PageClickGameTemplate):
         self.label_click_points.text = f"{dispnum(CG.click_points)} clicks"
         self.label_clickometer_points.text = f"{dispnum(CG.clickometer_points)} bars"
         
-        self.label_tick_gain.text = f"{dispnum(CG.tick_gain)} points / tick"
+        self.label_click_gain.text = f"{dispnum(self._click_gain() * CG.click_point_gain)} points / click"
+        self.label_tick_gain.text = f"{dispnum(CG.tick_gain + self._click_gain() * CG.click_point_tick_gain)} points / tick"
         self.label_tick_time.text = f"tick: {CG.tick_time:0.2f}s"
-        self.label_click_gain.text = f"{dispnum(self._click_gain())} points / click"
 
-        self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain)} clicks / click"
-        self.label_clicks_per_tick.text = f"{dispnum(CG.click_point_tick_gain)} clicks / tick"
+        self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain * (1.0 + CG.click_point_percent))} clicks / click"
+        self.label_clicks_per_tick.text = f"{dispnum(CG.click_point_tick_gain * (1.0 + CG.click_point_percent))} clicks / tick"
 
         progress = CG.clickometer_progress / float(CG.clickometer_max)
         self.progress_clickometer.progress = progress
@@ -139,18 +139,20 @@ class PageClickGame(PageClickGameTemplate):
         CG.core_points += self._click_gain() * click_point_multi
 
         # update click points
+        click_point_multi *= (1.0 + CG.click_point_percent)
         if CG.state >= STATE.AUTO_CLICKER:
-            CG.click_points += click_point_multi * (1.0 + CG.click_point_percent)
+            CG.click_points += click_point_multi
             self.button_auto_click_unlock.enabled = CG.click_points >= COST.AUTO_CLICK
 
         # update clickometer progress
         if CG.state >= STATE.CLICKOMETER:
-            CG.clickometer_progress += click_point_multi
             self.button_clickometer_unlock.enabled = CG.click_points >= COST.CLICKOMETER
-            if CG.clickometer_progress >= CG.clickometer_max:
-                CG.clickometer_points += CG.clickometer_gain
-                CG.clickometer_progress -= CG.clickometer_max
-                CG.clickometer_max = int(CG.clickometer_max * 1.01)
+            if CG.clickometer_gain > 0:
+                CG.clickometer_progress += click_point_multi
+                if CG.clickometer_progress >= CG.clickometer_max:
+                    CG.clickometer_points += CG.clickometer_gain
+                    CG.clickometer_progress -= CG.clickometer_max
+                    CG.clickometer_max = int(CG.clickometer_max * 1.01)
     
     # Callbacks
 
