@@ -14,6 +14,8 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
         cost_type = 'points'
         if self.item.cost_type == UC.CLICKS:
             cost_type = 'clicks'
+        elif self.item.cost_type == UC.FILLS:
+            cost_type = 'fills'
         
         self.label_name.text = f"{self.item.name}"
         self.label_effect.text = f"{self.item.effect}"
@@ -28,6 +30,8 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
             CG.core_points -= self.item.cost
         elif self.item.cost_type == UC.CLICKS:
             CG.click_points -= self.item.cost
+        elif self.item.cost_type == UC.FILLS:
+            CG.clickometer_points -= self.item.cost
         self.item.apply_upgrade()        
         CG.game.update_display()
 

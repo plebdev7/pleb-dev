@@ -24,12 +24,16 @@ class Upgrade:
         points = CG.core_points
         if self.cost_type == UC.CLICKS:
             points = CG.click_points
+        elif self.cost_type == UC.FILLS:
+            points = CG.clickometer_points
 
         return points
     
     def is_visible(self) -> bool:
         self.available = self.available or self.cost <= 100 or self.get_points() * 10 >= self.cost
         if self.cost_type == UC.CLICKS and CG.click_point_tick_gain == 0:
+            self.available = False
+        elif self.cost_type == UC.FILLS and CG.clickometer_gain == 0:
             self.available = False
         return self.available
     
@@ -65,6 +69,9 @@ class Upgrade:
         elif upgrade_type == UT.GEN_BONUS_PERCENT:
             for generator in Generators.values():
                 generator.effect *= (1.0 + upgrade_value)
+
+        elif upgrade_type == UT.CLICKOMETER_SCORE_MULTI:
+            CG.clickometer_gain *= (1.0 + upgrade_value)
         
         Page.ClickGame.update_display()
 
@@ -83,6 +90,7 @@ CoreUpgrades = {
     U.TICK_5P: Upgrade('tick speed', '+5% tick speed', 100, UC.SCORE, None, UT.TICK_PERCENT, 0.05, 6),
 }
 
+
 ClickUpgrades = {
     U.CLICK_CLICK_2X: Upgrade('click clicks', '2x clicks/click', 20, UC.CLICKS, None, UT.CLICK_CLICK_MULTI, 2.0, 3),
     U.CLICK_TICK_2X: Upgrade('tick clicks', '2x clicks/tick', 100, UC.CLICKS, None, UT.CLICK_TICK_MULTI, 2.0, 8),
@@ -90,4 +98,9 @@ ClickUpgrades = {
     U.CLICK_SCORE_10P: Upgrade('click points', '+10% click pts', 30, UC.CLICKS, None, UT.CLICK_SCORE_MULTI, 0.1, 2.5),
     U.GEN_COST_5P: Upgrade('gen cost', '-5% generator cost', 50, UC.CLICKS, None, UT.GEN_COST_PERCENT, -0.05, 28),
     U.GEN_BONUS_5P: Upgrade('gen bonus', '+5% gen points', 250, UC.CLICKS, None, UT.GEN_BONUS_PERCENT, 0.05, 16)
+}
+
+
+ClickometerUpgrades = {
+    U.CLICKOMETER_SCORE_10P: Upgrade('fill bonus', '+10% fills', 10, UC.FILLS, None, UT.CLICKOMETER_SCORE_MULTI, 0.1, 2),
 }
