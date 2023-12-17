@@ -47,10 +47,23 @@ components:
     - properties: {text: 'tick: 2.0s', role: input-prompt}
       type: Label
       name: label_tick_time
-  - name: grid_panel_1
-    properties: {spacing_above: none, spacing_below: none}
+  - properties: {align: center, spacing: huge, visible: false}
+    type: FlowPanel
+    layout_properties: {grid_position: 'OUCNAB,ESDRMU GVTLMY,AHTEPM'}
+    name: panel_click_labels
+    components:
+    - name: label_clicks_per_click
+      properties: {visible: true, role: input-prompt}
+      type: Label
+      layout_properties: {}
+    - name: label_clicks_per_tick
+      properties: {visible: true, role: input-prompt}
+      type: Label
+      layout_properties: {}
+  - name: grid_panel_clickometer
+    properties: {spacing_above: none, spacing_below: none, visible: false}
     type: GridPanel
-    layout_properties: {grid_position: 'OUCNAB,ARBDTC EOSOUN,SUKMGI'}
+    layout_properties: {grid_position: 'OUCNAB,ESDRMU TJLRAY,MROINR'}
     components:
     - name: progress_clickometer2
       properties: {progress: 0}
@@ -69,19 +82,6 @@ components:
       type: Label
       layout_properties: {row: SRBZYX, width_xs: 12, col_xs: 0}
       name: label_clickometer_progress
-  - properties: {align: center, spacing: huge, visible: false}
-    type: FlowPanel
-    layout_properties: {grid_position: 'OUCNAB,ESDRMU'}
-    name: panel_click_labels
-    components:
-    - name: label_clicks_per_click
-      properties: {visible: true, role: input-prompt}
-      type: Label
-      layout_properties: {}
-    - name: label_clicks_per_tick
-      properties: {visible: true, role: input-prompt}
-      type: Label
-      layout_properties: {}
   - properties: {text: click, role: filled-button, font_size: 24, bold: true, background: 'theme:Primary'}
     type: Button
     layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
@@ -156,8 +156,19 @@ components:
   components:
   - properties: {text: clickometer, role: title, icon: 'fa:minus'}
     type: Label
-    layout_properties: {grid_position: 'RTZEHD,ITKZJC'}
+    layout_properties: {grid_position: 'ORUDKG,OTJSGF'}
     name: label_4
+  - name: outlined_card_clickometer_unlock
+    properties: {role: outlined-card-tight}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'EOFLPH,NSEOMF'}
+    components:
+    - name: button_clickometer_unlock
+      properties: {text: 'Unlock Clickometer: 1000 clicks', role: filled-button, spacing_below: none,
+        spacing_above: none, bold: true, underline: false, italic: false}
+      type: Button
+      layout_properties: {grid_position: 'RTMTIM,KNPFTQ'}
+      event_bindings: {click: button_clickometer_unlock_click}
 - properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: small,
     spacing_above: none}
   type: ColumnPanel

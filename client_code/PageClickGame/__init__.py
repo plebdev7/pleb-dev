@@ -4,7 +4,7 @@ from anvil.js import get_dom_node
 
 from ._anvil_designer import PageClickGameTemplate  # type: ignore
 
-from .ClickGame import CG, TAB, STATE
+from .ClickGame import CG, TAB, STATE, COST
 from .Generator import Generators
 from .State import activate_state
 from .Tab import Tabs
@@ -21,10 +21,6 @@ class PageClickGame(PageClickGameTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
         CG.game = self
-        dom_node = get_dom_node(self.progress_clickometer)
-        for i in range(dom_node.children.item(0).children.item(0).children.item(0).children.length):
-            print(dom_node.children.item(i))
-        # print(dom_node.style.cssText)
         
         # setup timer
         self.timer.interval = CG.tick_time
@@ -47,8 +43,11 @@ class PageClickGame(PageClickGameTemplate):
 
         # setup auto clicker tab
         self.button_auto_click_unlock.enabled = False
+        self.button_auto_click_unlock.text = f"unlock auto-clicker: {COST.AUTO_CLICK} clicks"
         
-        # setup clickometer tab        
+        # setup clickometer tab
+        self.button_clickometer_unlock.enabled = False
+        self.button_clickometer_unlock.text = f"unlock clickometer: {COST.CLICKOMETER} clicks"
 
         # final display update at startup
         Tabs[TAB.GENERATORS].activate()
@@ -86,7 +85,7 @@ class PageClickGame(PageClickGameTemplate):
             if not tab.unlocked:
                 tab_button.tooltip = f"unlock at {dispnum(tab.cost)}"
                 if tab.check_unlocked():
-                    tab_button.text = tab.name                    
+                    tab_button.text = tab.name.replace("_", " ")                
                     tab_button.enabled = True
                     tab_button.tooltip = None
     
@@ -103,14 +102,16 @@ class PageClickGame(PageClickGameTemplate):
                 generator_panel.update_display()
 
     def _update_click_upgrades_tab(self):
-        CG.game.panel_click_labels.visible = CG.click_point_tick_gain > 0
+        self.panel_click_labels.visible = CG.click_point_tick_gain > 0
         for click_upgrade_panel in self.repeating_panel_click_upgrades.get_components():
             click_upgrade_panel.visible = click_upgrade_panel.item.is_visible()
             if click_upgrade_panel.visible:
                 click_upgrade_panel.update_display()
 
     def _update_clickometer_tab(self):
-        pass
+        clickometer_visible = CG.clickometer_gain > 0
+        self.grid_panel_clickometer.visible = clickometer_visible
+        CG.game.label_clickometer_points.visible = clickometer_visible
     
     def _update_tick_gain(self):
         CG.tick_gain = 0
@@ -140,11 +141,12 @@ class PageClickGame(PageClickGameTemplate):
         # update click points
         if CG.state >= STATE.AUTO_CLICKER:
             CG.click_points += click_point_multi * (1.0 + CG.click_point_percent)
-            self.button_auto_click_unlock.enabled = (CG.click_points >= 10)
+            self.button_auto_click_unlock.enabled = CG.click_points >= COST.AUTO_CLICK
 
         # update clickometer progress
         if CG.state >= STATE.CLICKOMETER:
             CG.clickometer_progress += click_point_multi
+            self.button_clickometer_unlock.enabled = CG.click_points >= COST.CLICKOMETER
             if CG.clickometer_progress >= CG.clickometer_max:
                 CG.clickometer_points += CG.clickometer_gain
                 CG.clickometer_progress -= CG.clickometer_max
@@ -178,7 +180,14 @@ class PageClickGame(PageClickGameTemplate):
         """callback on auto click unlock"""
         self.outlined_card_auto_clicker_unlock.visible = False
         CG.click_point_tick_gain = 1
-        CG.click_points -= 10
+        CG.click_points -= COST.AUTO_CLICK
+        self.update_display()
+
+    def button_clickometer_unlock_click(self, **event_args):
+        """callback on auto click unlock"""
+        self.outlined_card_clickometer_unlock.visible = False
+        CG.clickometer_gain = 1
+        CG.click_points -= COST.CLICKOMETER
         self.update_display()
         
         

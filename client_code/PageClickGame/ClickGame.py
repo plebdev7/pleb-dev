@@ -50,6 +50,7 @@ class UT:
 class UC:
     SCORE = 1
     CLICKS = 2
+    BARS = 3
 
 
 class TAB:
@@ -62,6 +63,11 @@ class STATE:
     BASE = 1
     AUTO_CLICKER = 2
     CLICKOMETER = 3
+
+
+class COST:
+    AUTO_CLICK = 10
+    CLICKOMETER = 1000
 
 
 class CG:
@@ -84,7 +90,7 @@ class CG:
     click_point_tick_gain = 0
     click_point_percent = 0.0
 
-    clickometer_gain = 1
+    clickometer_gain = 0
     clickometer_progress = 0
     clickometer_max = 100
 

@@ -14,7 +14,7 @@ class StateAutoClicker(State):
 
 class StateClickometer(State):
     def enter(self):
-        CG.game.label_clickometer_points.visible = True
+        pass
 
 
 States = {
