@@ -15,14 +15,9 @@ class PageGamesList(PageGamesListTemplate):
         self.button_click.tag.page = Page.ClickGame
         self.button_potions.tag.page = Page.PotionsGame
 
-        print(self.button_click.tag)
-
-        print(Page.ClickGame)
 
     def game_link_click(self, **event_args):
         """Generalized click handler for game links"""
-        print(self.button_click.tag)
-
         page = event_args['sender'].tag.page
         get_open_form().open_game(page)
 

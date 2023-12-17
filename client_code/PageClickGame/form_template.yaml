@@ -52,6 +52,14 @@ components:
     type: GridPanel
     layout_properties: {grid_position: 'OUCNAB,ARBDTC EOSOUN,SUKMGI'}
     components:
+    - name: progress_clickometer2
+      properties: {progress: 0}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}
+    - name: progress_clickometer3
+      properties: {progress: 0}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}
     - properties: {progress: 0}
       type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
       layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}

@@ -1,6 +1,9 @@
 from math import floor, ceil, log2
 
+from anvil.js import get_dom_node
+
 from ._anvil_designer import PageClickGameTemplate  # type: ignore
+
 from .ClickGame import CG, TAB, STATE
 from .Generator import Generators
 from .State import activate_state
@@ -18,6 +21,10 @@ class PageClickGame(PageClickGameTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
         CG.game = self
+        dom_node = get_dom_node(self.progress_clickometer)
+        for i in range(dom_node.children.item(0).children.item(0).children.item(0).children.length):
+            print(dom_node.children.item(i))
+        # print(dom_node.style.cssText)
         
         # setup timer
         self.timer.interval = CG.tick_time
@@ -61,8 +68,11 @@ class PageClickGame(PageClickGameTemplate):
         self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain)} clicks / click"
         self.label_clicks_per_tick.text = f"{dispnum(CG.click_point_tick_gain)} clicks / tick"
 
-        self.progress_clickometer.progress = CG.clickometer_progress / float(CG.clickometer_max)
-        self.label_clickometer_progress.text = f"{CG.clickometer_progress} / {CG.clickometer_max}"
+        progress = CG.clickometer_progress / float(CG.clickometer_max)
+        self.progress_clickometer.progress = progress
+        self.progress_clickometer2.progress = progress
+        self.progress_clickometer3.progress = progress
+        self.label_clickometer_progress.text = f"clickometer: {dispnum(CG.clickometer_progress)} / {dispnum(CG.clickometer_max)}"
 
         self._update_tabs()
         self._update_core_upgrades()
