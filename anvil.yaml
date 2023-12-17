@@ -16,6 +16,6 @@ runtime_options:
   server_version: python3-sandbox
   server_spec: {base: python310-standard}
   server_spec_disabled: {requirements: '', base: python310-minimal}
-metadata: {title: pleb.dev, description: Games for Plebs}
+metadata: {title: pleb.dev, description: games for plebs}
 startup_form: null
 renamed: true

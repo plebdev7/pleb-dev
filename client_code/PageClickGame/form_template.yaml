@@ -6,38 +6,88 @@ components:
   layout_properties: {grid_position: 'JFSWXH,KNXLOU', full_width_row: false}
   name: outlined_card_1
   components:
-  - properties: {text: '0', role: display, align: center, icon: ''}
-    type: Label
-    layout_properties: {grid_position: 'VDZNRQ,WCIYLP'}
-    name: label_score
+  - name: flow_panel_4
+    properties: {align: center}
+    type: FlowPanel
+    layout_properties: {grid_position: 'PUTOCA,VTSFLR'}
+    components:
+    - properties: {text: '0', role: display, align: center, icon: ''}
+      type: Label
+      name: label_core_points
+    - name: column_panel_clicks
+      properties: {visible: false, col_spacing: none, spacing_above: none, spacing_below: none}
+      type: ColumnPanel
+      components:
+      - name: label_click_points
+        properties: {text: 0 clicks, role: input-prompt, spacing_below: none, spacing_above: none}
+        type: Label
+        layout_properties: {grid_position: 'JTFHOZ,GNDQUR'}
+      - name: label_clickometer_points
+        properties: {text: 0 bars, role: input-prompt, spacing_below: none, spacing_above: none,
+          visible: false}
+        type: Label
+        layout_properties: {grid_position: 'NOPMHX,AOSAMK'}
+      layout_properties: {}
   - properties: {interval: 0.1}
     type: Timer
     layout_properties: {grid_position: 'METZFJ,ALWQKN'}
     event_bindings: {tick: timer_tick}
     name: timer
-  - properties: {align: center, spacing: huge}
+  - name: flow_panel_3
+    properties: {align: center, spacing: huge}
     type: FlowPanel
-    layout_properties: {grid_position: 'OUCNAB,ARGAZR'}
-    name: flow_panel_1
+    layout_properties: {grid_position: 'OUCNAB,ARBDTC'}
     components:
     - properties: {text: 1 / click, role: input-prompt}
       type: Label
-      layout_properties: {}
-      name: label_click
+      name: label_click_gain
     - properties: {text: 0 / tick, role: input-prompt}
       type: Label
-      layout_properties: {}
-      name: label_gain
+      name: label_tick_gain
     - properties: {text: 'tick: 2.0s', role: input-prompt}
       type: Label
+      name: label_tick_time
+  - properties: {align: center, spacing: huge, visible: false}
+    type: FlowPanel
+    layout_properties: {grid_position: 'OUCNAB,ESDRMU GVTLMY,AHTEPM'}
+    name: panel_click_labels
+    components:
+    - name: label_clicks_per_click
+      properties: {visible: true, role: input-prompt}
+      type: Label
       layout_properties: {}
-      name: label_tick
+    - name: label_clicks_per_tick
+      properties: {visible: true, role: input-prompt}
+      type: Label
+      layout_properties: {}
+  - name: grid_panel_clickometer
+    properties: {spacing_above: none, spacing_below: none, visible: false}
+    type: GridPanel
+    layout_properties: {grid_position: 'OUCNAB,ESDRMU TJLRAY,MROINR'}
+    components:
+    - name: progress_clickometer2
+      properties: {progress: 0}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}
+    - name: progress_clickometer3
+      properties: {progress: 0}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}
+    - properties: {progress: 0}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}
+      name: progress_clickometer
+    - properties: {align: center, text: 'clickometer: 0 / 100', spacing_above: none,
+        spacing_below: none}
+      type: Label
+      layout_properties: {row: SRBZYX, width_xs: 12, col_xs: 0}
+      name: label_clickometer_progress
   - properties: {text: click, role: filled-button, font_size: 24, bold: true, background: 'theme:Primary'}
     type: Button
     layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
     event_bindings: {click: button_click_click}
     name: button_click
-- properties: {spacing_below: none, spacing: tiny}
+- properties: {spacing_below: none, spacing: tiny, visible: true}
   type: FlowPanel
   layout_properties: {grid_position: 'YLSOCV,IVEUST'}
   name: flow_panel_2
@@ -47,91 +97,89 @@ components:
     layout_properties: {}
     event_bindings: {click: button_tab_click}
     name: button_generators
+  - name: button_auto_clicker
+    properties: {text: '???', role: tonal-button, visible: true}
+    type: Button
+    layout_properties: {}
+    event_bindings: {click: button_tab_click}
   - properties: {text: '???
 
-        ', role: tonal-button, background: '', enabled: false, tooltip: ''}
+        ', role: tonal-button, background: '', enabled: true, tooltip: '', visible: true}
     type: Button
     layout_properties: {}
     event_bindings: {click: button_tab_click}
     name: button_clickometer
-- properties: {role: outlined-card-tight, spacing_above: none}
+- properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: tiny,
+    spacing_above: none}
   type: ColumnPanel
-  layout_properties: {grid_position: 'GJXXXQ,JAHARE'}
-  name: card_generators
+  layout_properties: {grid_position: 'ZPRUTR,WHWTAB CPXSUL,ZSFUNJ'}
+  name: outlined_card_generators
   components:
-  - properties: {role: outlined-card-tight, background: 'theme:Primary Container',
-      col_spacing: tiny, spacing_above: none}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'GKNSHS,DZNTND'}
-    name: outlined_card_2
-    components:
-    - properties: {text: Generators, role: title, icon: 'fa:gear'}
-      type: Label
-      layout_properties: {grid_position: 'JQWTKD,NUESNZ'}
-      name: label_2
-    - properties: {item_template: PageClickGame.TemplateGenerator}
-      type: RepeatingPanel
-      layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
-      name: repeating_panel_generators
-  - properties: {role: outlined-card-tight, background: 'theme:Primary Container',
-      col_spacing: small, spacing_above: none}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'GKNSHS,TEVHEY'}
-    name: outlined_card_3
-    components:
-    - properties: {text: Upgrades, icon: 'fa:angle-double-up', role: title}
-      type: Label
-      layout_properties: {grid_position: 'VRBMMK,HXSMEU'}
-      name: label_3
-    - properties: {item_template: PageClickGame.TemplateUpgrade}
-      type: RepeatingPanel
-      layout_properties: {grid_position: 'IKDUSD,BCARXF'}
-      name: repeating_panel_upgrades
-- properties: {role: outlined-card-tight}
+  - properties: {text: generators, role: title, icon: 'fa:gear'}
+    type: Label
+    layout_properties: {grid_position: 'JQWTKD,NUESNZ'}
+    name: label_2
+  - properties: {item_template: PageClickGame.TemplateGenerator}
+    type: RepeatingPanel
+    layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
+    name: repeating_panel_generators
+- properties: {role: outlined-card-tight, background: 'theme:Primary Container', visible: true,
+    col_spacing: tiny, spacing_above: none}
   type: ColumnPanel
-  layout_properties: {grid_position: 'HPHWOD,AHJWVU'}
-  name: card_clickometer
+  layout_properties: {grid_position: 'ZPRUTR,WHWTAB QYDFUX,MMGGGH'}
+  name: outlined_card_auto_clicker
   components:
-  - properties: {role: outlined-card-tight, background: 'theme:Primary Container'}
+  - properties: {text: auto-clicker, role: title, icon: 'fa:hand-pointer-o'}
+    type: Label
+    layout_properties: {grid_position: 'AWQRSV,FRWVTU'}
+    name: label_5
+  - name: outlined_card_auto_clicker_unlock
+    properties: {role: outlined-card-tight}
     type: ColumnPanel
-    layout_properties: {grid_position: 'LGSTBX,KNEQIV ILGEQC,OHNYPM'}
-    name: outlined_card_4
+    layout_properties: {grid_position: 'CMPKSK,ECUOUW'}
     components:
-    - properties: {text: Clickometer, role: title, icon: 'fa:minus'}
-      type: Label
-      layout_properties: {grid_position: 'RTZEHD,ITKZJC'}
-      name: label_4
-    - properties: {}
-      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
-      layout_properties: {grid_position: 'UNDNUC,QXQIJH'}
-      name: determinate_1
-    - properties: {align: center, text: 0 / 100}
-      type: Label
-      layout_properties: {grid_position: 'CIQYKE,SMBBJX'}
-      name: label_1
-  - properties: {role: outlined-card-tight, background: 'theme:Primary Container'}
+    - name: button_auto_click_unlock
+      properties: {text: 'Unlock Auto-Clicker: 10 clicks', role: filled-button, spacing_below: none,
+        spacing_above: none, bold: true, underline: false, italic: false}
+      type: Button
+      layout_properties: {grid_position: 'RTMTIM,KNPFTQ'}
+      event_bindings: {click: button_auto_click_unlock_click}
+  - name: repeating_panel_click_upgrades
+    properties: {item_template: PageClickGame.TemplateUpgrade}
+    type: RepeatingPanel
+    layout_properties: {grid_position: 'SEFFVP,MYQEDR'}
+- properties: {role: outlined-card-tight, background: 'theme:Primary Container', visible: true,
+    spacing_above: none, col_spacing: tiny}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'ZPRUTR,WHWTAB GTWGJH,CXEGXF'}
+  name: outlined_card_clickometer
+  components:
+  - properties: {text: clickometer, role: title, icon: 'fa:minus'}
+    type: Label
+    layout_properties: {grid_position: 'ORUDKG,OTJSGF'}
+    name: label_4
+  - name: outlined_card_clickometer_unlock
+    properties: {role: outlined-card-tight}
     type: ColumnPanel
-    layout_properties: {grid_position: 'LGSTBX,KNEQIV AYSYUP,EDTWGT'}
-    name: outlined_card_4_copy
+    layout_properties: {grid_position: 'EOFLPH,NSEOMF'}
     components:
-    - properties: {text: Battery, role: title, icon: 'fa:battery-half'}
-      type: Label
-      layout_properties: {grid_position: 'RTZEHD,ITKZJC'}
-      name: label_4_copy
-    - properties: {}
-      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
-      layout_properties: {grid_position: 'UNDNUC,QXQIJH'}
-      name: determinate_1_copy
-    - properties: {align: center, text: 0 / 100}
-      type: Label
-      layout_properties: {grid_position: 'CIQYKE,SMBBJX'}
-      name: label_1_copy
-  - properties: {role: outlined-card-tight, background: 'theme:Primary Container'}
-    type: ColumnPanel
-    layout_properties: {grid_position: 'LGSTBX,VTLSOP'}
-    name: outlined_card_5
-    components:
-    - properties: {text: Auto-Clicker, role: title, icon: 'fa:hand-pointer-o'}
-      type: Label
-      layout_properties: {grid_position: 'AWQRSV,FRWVTU'}
-      name: label_5
+    - name: button_clickometer_unlock
+      properties: {text: 'Unlock Clickometer: 1000 clicks', role: filled-button, spacing_below: none,
+        spacing_above: none, bold: true, underline: false, italic: false}
+      type: Button
+      layout_properties: {grid_position: 'RTMTIM,KNPFTQ'}
+      event_bindings: {click: button_clickometer_unlock_click}
+- properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: small,
+    spacing_above: none}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'ZPRUTR,PBMFAW'}
+  name: outlined_card_core_upgrades
+  components:
+  - properties: {text: upgrades, icon: 'fa:angle-double-up', role: title}
+    type: Label
+    layout_properties: {grid_position: 'VRBMMK,HXSMEU'}
+    name: label_3
+  - properties: {item_template: PageClickGame.TemplateUpgrade}
+    type: RepeatingPanel
+    layout_properties: {grid_position: 'IKDUSD,BCARXF'}
+    name: repeating_panel_core_upgrades
