@@ -24,14 +24,6 @@ class PageClickGame(PageClickGameTemplate):
         
         # setup timer
         self.timer.interval = CG.tick_time
-
-        # set tab button
-        self.button_generators.tag.tab = TAB.GENERATORS
-        self.button_auto_clicker.tag.tab = TAB.AUTO_CLICKER
-        self.button_clickometer.tag.tab = TAB.CLICKOMETER
-        self.tab_buttons = [self.button_generators, self.button_auto_clicker, self.button_clickometer]
-        for tab_button in self.tab_buttons[1:]:
-            tab_button.enabled = False
         
         # setup upgrades
         self.refresh_upgrade_order()
@@ -61,8 +53,8 @@ class PageClickGame(PageClickGameTemplate):
         self.label_click_points.text = f"{dispnum(CG.click_points)} clicks"
         self.label_clickometer_points.text = f"{dispnum(CG.clickometer_points, as_int = False)} fills"
         
-        self.label_click_gain.text = f"{dispnum(self._click_gain() * CG.click_point_gain)} points / click"
-        self.label_tick_gain.text = f"{dispnum(CG.tick_gain + self._click_gain() * CG.click_point_tick_gain)} points / tick"
+        self.label_click_gain.text = f"{dispnum(self._click_gain() * CG.click_point_gain, as_int = False)} points / click"
+        self.label_tick_gain.text = f"{dispnum(CG.tick_gain + self._click_gain() * CG.click_point_tick_gain, as_int = False)} points / tick"
         self.label_tick_time.text = f"tick: {CG.tick_time:0.2f}s"
 
         self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain * (1.0 + CG.click_point_percent), as_int = False)} clicks / click"
@@ -82,14 +74,9 @@ class PageClickGame(PageClickGameTemplate):
         self._update_clickometer_tab()
     
     def _update_tabs(self):
-        for tab_button in self.tab_buttons:
-            tab = Tabs[tab_button.tag.tab]
+        for tab in Tabs.values():
             if not tab.unlocked:
-                tab_button.tooltip = f"unlock at {dispnum(tab.cost)}"
-                if tab.check_unlocked():
-                    tab_button.text = tab.name.replace("_", " ")                
-                    tab_button.enabled = True
-                    tab_button.tooltip = None
+                tab.check_unlocked()
 
     @staticmethod
     def _update_repeating_panel(repeating_panel):
@@ -105,7 +92,8 @@ class PageClickGame(PageClickGameTemplate):
         self._update_repeating_panel(self.repeating_panel_generators)
 
     def _update_click_upgrades_tab(self):
-        self.panel_click_labels.visible = CG.click_point_tick_gain > 0
+        click_upgrades_visible = CG.click_point_tick_gain > 0
+        self.panel_click_labels.visible = click_upgrades_visible
         self._update_repeating_panel(self.repeating_panel_click_upgrades)
 
     def _update_clickometer_tab(self):

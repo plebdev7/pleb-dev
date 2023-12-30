@@ -1,6 +1,3 @@
-DEBUG = True
-
-
 class G:
     GENERATOR_A = 1
     GENERATOR_B = 2
@@ -101,6 +98,9 @@ class CG:
     update_generators = True
     update_upgrades = True
 
+    DEBUG = True
+    
     if DEBUG:
-        core_points = 999999
-        click_points = 9999
+        core_points = 9999
+        click_points = 0
+
