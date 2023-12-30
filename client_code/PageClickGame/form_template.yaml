@@ -93,7 +93,7 @@ components:
       - properties: {align: center, text: 0 / 100, spacing_above: none, spacing_below: none}
         type: Label
         name: label_clickometer_progress
-  - properties: {text: click, role: filled-button, font_size: 24, bold: true, background: 'theme:Primary'}
+  - properties: {text: click, role: null, font_size: 24, bold: true, background: ''}
     type: Button
     layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
     event_bindings: {click: button_click_click}
@@ -103,19 +103,19 @@ components:
   layout_properties: {grid_position: 'YLSOCV,IVEUST'}
   name: flow_panel_2
   components:
-  - properties: {text: generators, role: filled-button}
+  - properties: {text: generators, role: null}
     type: Button
     layout_properties: {}
     event_bindings: {click: button_tab_click}
     name: button_generators
   - name: button_auto_clicker
-    properties: {text: '???', role: tonal-button, visible: true}
+    properties: {text: '???', role: null, visible: true, enabled: true}
     type: Button
     layout_properties: {}
     event_bindings: {click: button_tab_click}
   - properties: {text: '???
 
-        ', role: tonal-button, background: '', enabled: true, tooltip: '', visible: true}
+        ', role: null, background: '', enabled: true, tooltip: '', visible: true}
     type: Button
     layout_properties: {}
     event_bindings: {click: button_tab_click}
@@ -133,8 +133,8 @@ components:
     type: RepeatingPanel
     layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
     name: repeating_panel_generators
-- properties: {role: outlined-card-tight, background: 'theme:Primary Container', visible: true,
-    col_spacing: tiny, spacing_above: none}
+- properties: {role: outlined-card-tight, background: '', visible: true, col_spacing: tiny,
+    spacing_above: none}
   type: ColumnPanel
   layout_properties: {grid_position: 'ZPRUTR,WHWTAB QYDFUX,MMGGGH'}
   name: outlined_card_auto_clicker
@@ -149,7 +149,7 @@ components:
     layout_properties: {grid_position: 'CMPKSK,ECUOUW'}
     components:
     - name: button_auto_click_unlock
-      properties: {text: 'Unlock Auto-Clicker: 10 clicks', role: filled-button, spacing_below: none,
+      properties: {text: 'Unlock Auto-Clicker: 10 clicks', role: null, spacing_below: none,
         spacing_above: none, bold: true, underline: false, italic: false}
       type: Button
       layout_properties: {grid_position: 'RTMTIM,KNPFTQ'}
@@ -158,8 +158,8 @@ components:
     properties: {item_template: PageClickGame.TemplateUpgrade}
     type: RepeatingPanel
     layout_properties: {grid_position: 'SEFFVP,MYQEDR'}
-- properties: {role: outlined-card-tight, background: 'theme:Primary Container', visible: true,
-    spacing_above: none, col_spacing: tiny}
+- properties: {role: outlined-card-tight, background: '', visible: true, spacing_above: none,
+    col_spacing: tiny}
   type: ColumnPanel
   layout_properties: {grid_position: 'ZPRUTR,WHWTAB GTWGJH,CXEGXF'}
   name: outlined_card_clickometer
@@ -174,7 +174,7 @@ components:
     layout_properties: {grid_position: 'EOFLPH,NSEOMF'}
     components:
     - name: button_clickometer_unlock
-      properties: {text: 'Unlock Clickometer: 1000 clicks', role: filled-button, spacing_below: none,
+      properties: {text: 'Unlock Clickometer: 1000 clicks', role: null, spacing_below: none,
         spacing_above: none, bold: true, underline: false, italic: false}
       type: Button
       layout_properties: {grid_position: 'RTMTIM,KNPFTQ'}
@@ -183,8 +183,7 @@ components:
     properties: {item_template: PageClickGame.TemplateUpgrade}
     type: RepeatingPanel
     layout_properties: {grid_position: 'LGQRVT,SIEJSG'}
-- properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: small,
-    spacing_above: none}
+- properties: {role: outlined-card-tight, background: '', col_spacing: small, spacing_above: none}
   type: ColumnPanel
   layout_properties: {grid_position: 'ZPRUTR,PBMFAW'}
   name: outlined_card_core_upgrades

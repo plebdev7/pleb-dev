@@ -4,8 +4,7 @@ container:
   properties: {spacing_below: none, spacing_above: none}
 components:
 - name: outlined_card_2
-  properties: {role: outlined-card-tight, background: 'theme:Secondary Container',
-    col_widths: '{}'}
+  properties: {role: outlined-card-tight, background: '', col_widths: '{}'}
   type: ColumnPanel
   layout_properties: {grid_position: 'QFHIFF,EUGWLN'}
   components:
@@ -20,9 +19,9 @@ components:
     type: Label
     layout_properties: {grid_position: 'MJQDUY,GPAEGL'}
   - name: button_buy
-    properties: {role: tonal-button, enabled: true, foreground: 'theme:On Secondary',
-      visible: true, text: 'cost: 0', font_size: null, font: '', spacing_above: none,
-      spacing_below: none, background: 'theme:Secondary', bold: false}
+    properties: {role: null, enabled: true, foreground: '', visible: true, text: 'cost:
+        0', font_size: null, font: '', spacing_above: none, spacing_below: none, background: '',
+      bold: false}
     type: Button
     layout_properties: {grid_position: 'MJQDUY,CRBRPO'}
     event_bindings: {click: button_buy_click}
