@@ -101,6 +101,6 @@ class CG:
     DEBUG = True
     
     if DEBUG:
-        core_points = 9999
-        click_points = 0
+        core_points = 1000000
+        click_points = 10000
 

@@ -109,11 +109,41 @@ components:
       - properties: {align: center, text: 0 / 100, spacing_above: none, spacing_below: none}
         type: Label
         name: label_clickometer_progress
-  - properties: {text: click, role: null, font_size: 24, bold: true, background: ''}
-    type: Button
-    layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
-    event_bindings: {click: button_click_click}
-    name: button_click
+  - name: panel_battery
+    properties: {role: outlined-card, spacing_below: none, spacing_above: none, visible: false}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'TIMPZD,FNTUYS'}
+    components:
+    - name: progress_battery
+      properties: {}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {grid_position: 'XDZMYF,NXGVKR'}
+    - name: progress_battery2
+      properties: {}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {grid_position: 'NRPPSI,WVAOTW'}
+    - name: progress_battery3
+      properties: {}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {grid_position: 'XVRJFM,HICFHY'}
+    - name: flow_panel_3
+      properties: {align: center, spacing: tiny, spacing_above: none, spacing_below: none}
+      type: FlowPanel
+      layout_properties: {grid_position: 'CBQZXG,BWTLSP'}
+      components:
+      - name: label_6
+        properties: {text: 'battery:', spacing_below: none, spacing_above: none}
+        type: Label
+        layout_properties: {}
+      - name: label_battery
+        properties: {spacing_below: none, spacing_above: none}
+        type: Label
+        layout_properties: {}
+- properties: {text: click, role: null, font_size: 24, bold: true, background: ''}
+  type: Button
+  layout_properties: {grid_position: 'EKYLAF,CUPSGE'}
+  event_bindings: {click: button_click_click}
+  name: button_click
 - properties: {role: outlined-card-tight, background: '', col_spacing: tiny, spacing_above: none}
   type: ColumnPanel
   layout_properties: {grid_position: 'ZPRUTR,WHWTAB'}
