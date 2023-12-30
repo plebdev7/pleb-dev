@@ -122,7 +122,7 @@ components:
     name: button_clickometer
 - properties: {role: outlined-card-tight, background: '', col_spacing: tiny, spacing_above: none}
   type: ColumnPanel
-  layout_properties: {grid_position: 'ZPRUTR,WHWTAB CPXSUL,ZSFUNJ'}
+  layout_properties: {grid_position: 'ZPRUTR,WHWTAB'}
   name: outlined_card_generators
   components:
   - properties: {text: generators, role: title, icon: 'fa:gear'}
@@ -133,10 +133,23 @@ components:
     type: RepeatingPanel
     layout_properties: {grid_position: 'KFJUSA,DNTTAR'}
     name: repeating_panel_generators
+- properties: {role: outlined-card-tight, background: '', col_spacing: small, spacing_above: none}
+  type: ColumnPanel
+  layout_properties: {grid_position: 'ZPRUTR,PBMFAW'}
+  name: outlined_card_core_upgrades
+  components:
+  - properties: {text: upgrades, icon: 'fa:angle-double-up', role: title}
+    type: Label
+    layout_properties: {grid_position: 'VRBMMK,HXSMEU'}
+    name: label_3
+  - properties: {item_template: PageClickGame.TemplateUpgrade}
+    type: RepeatingPanel
+    layout_properties: {grid_position: 'IKDUSD,BCARXF'}
+    name: repeating_panel_core_upgrades
 - properties: {role: outlined-card-tight, background: '', visible: true, col_spacing: tiny,
     spacing_above: none}
   type: ColumnPanel
-  layout_properties: {grid_position: 'ZPRUTR,WHWTAB QYDFUX,MMGGGH'}
+  layout_properties: {grid_position: 'ZPRUTR,WOAMHV'}
   name: outlined_card_auto_clicker
   components:
   - properties: {text: auto-clicker, role: title, icon: 'fa:hand-pointer-o'}
@@ -161,7 +174,7 @@ components:
 - properties: {role: outlined-card-tight, background: '', visible: true, spacing_above: none,
     col_spacing: tiny}
   type: ColumnPanel
-  layout_properties: {grid_position: 'ZPRUTR,WHWTAB GTWGJH,CXEGXF'}
+  layout_properties: {grid_position: 'ZPRUTR,HHQHHY'}
   name: outlined_card_clickometer
   components:
   - properties: {text: clickometer, role: title, icon: 'fa:minus'}
@@ -183,16 +196,3 @@ components:
     properties: {item_template: PageClickGame.TemplateUpgrade}
     type: RepeatingPanel
     layout_properties: {grid_position: 'LGQRVT,SIEJSG'}
-- properties: {role: outlined-card-tight, background: '', col_spacing: small, spacing_above: none}
-  type: ColumnPanel
-  layout_properties: {grid_position: 'ZPRUTR,PBMFAW'}
-  name: outlined_card_core_upgrades
-  components:
-  - properties: {text: upgrades, icon: 'fa:angle-double-up', role: title}
-    type: Label
-    layout_properties: {grid_position: 'VRBMMK,HXSMEU'}
-    name: label_3
-  - properties: {item_template: PageClickGame.TemplateUpgrade}
-    type: RepeatingPanel
-    layout_properties: {grid_position: 'IKDUSD,BCARXF'}
-    name: repeating_panel_core_upgrades

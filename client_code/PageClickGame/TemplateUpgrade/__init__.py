@@ -17,9 +17,9 @@ class TemplateUpgrade(TemplateUpgradeTemplate):
         elif self.item.cost_type == UC.FILLS:
             cost_type = 'fills'
         
-        self.label_name.text = f"{self.item.name}"
-        self.label_effect.text = f"{self.item.effect}"
-        self.button_buy.text = f"{dispnum(self.item.cost)} {cost_type}"
+        # self.label_name.text = f""
+        # self.label_effect.text = f"{self.item.effect}"
+        self.button_buy.text = f"{self.item.name}\n{dispnum(self.item.cost)} {cost_type}"
 
         self.button_buy.enabled = self.item.get_points() >= self.item.cost
 

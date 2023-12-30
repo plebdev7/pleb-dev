@@ -12,9 +12,9 @@ class TemplateGenerator(TemplateGeneratorTemplate):
 
     def update_display(self):
         cost = self.item.current_cost()
-        self.label_name.text = f"{self.item.name} ({self.item.count})"    
-        self.label_effect.text = f"{dispnum(self.item.effect)} points / tick"
-        self.button_buy.text = f"{dispnum(cost)} points"
+        # self.label_name.text = f""    
+        # self.label_effect.text = f"{dispnum(self.item.effect)} points / tick"
+        self.button_buy.text = f"{self.item.name} ({self.item.count})\n{dispnum(cost)} points"
         
         self.button_buy.enabled = CG.core_points >= cost
     
