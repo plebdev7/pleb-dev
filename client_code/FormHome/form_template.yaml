@@ -13,9 +13,17 @@ components:
   type: FlowPanel
   layout_properties: {slot: title}
   components:
+  - name: spacer_1
+    properties: {height: 32}
+    type: Spacer
+    layout_properties: {width: 0}
   - name: label_title
     properties: {text: pleb.dev, role: title}
     type: Label
+  - name: spacer_3
+    properties: {height: 32}
+    type: Spacer
+    layout_properties: {expand: true}
   - type: FlowPanel
     properties: {align: right}
     name: navbar_links
@@ -36,3 +44,6 @@ components:
       type: Link
       layout_properties: {}
       event_bindings: {click: nav_link_click}
+  - name: spacer_2
+    properties: {height: 32}
+    type: Spacer
