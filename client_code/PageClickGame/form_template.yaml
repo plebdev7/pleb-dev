@@ -1,7 +1,7 @@
 is_package: true
 container: {type: ColumnPanel}
 components:
-- properties: {role: outlined-card, background: 'theme:Primary Container'}
+- properties: {role: outlined-card, background: ''}
   type: ColumnPanel
   layout_properties: {grid_position: 'JFSWXH,KNXLOU', full_width_row: false}
   name: outlined_card_1
@@ -120,8 +120,7 @@ components:
     layout_properties: {}
     event_bindings: {click: button_tab_click}
     name: button_clickometer
-- properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: tiny,
-    spacing_above: none}
+- properties: {role: outlined-card-tight, background: '', col_spacing: tiny, spacing_above: none}
   type: ColumnPanel
   layout_properties: {grid_position: 'ZPRUTR,WHWTAB CPXSUL,ZSFUNJ'}
   name: outlined_card_generators
