@@ -1,4 +1,4 @@
-DEBUG = True
+DEBUG = False
 
 
 class G:
@@ -31,6 +31,8 @@ class U:
     CLICK_SCORE_10P = 1004
     GEN_COST_5P = 1005
     GEN_BONUS_5P = 1006
+
+    CLICKOMETER_SCORE_10P = 2001
     
 
 class UT:
@@ -46,11 +48,13 @@ class UT:
     GEN_COST_PERCENT = 1005
     GEN_BONUS_PERCENT = 1006
 
+    CLICKOMETER_SCORE_MULTI = 2001
+
 
 class UC:
     SCORE = 1
     CLICKS = 2
-    BARS = 3
+    FILLS = 3
 
 
 class TAB:
@@ -99,3 +103,4 @@ class CG:
 
     if DEBUG:
         core_points = 999999
+        click_points = 9999

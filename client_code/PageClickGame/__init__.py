@@ -8,7 +8,7 @@ from .ClickGame import CG, TAB, STATE, COST
 from .Generator import Generators
 from .State import activate_state
 from .Tab import Tabs
-from .Upgrade import CoreUpgrades, ClickUpgrades
+from .Upgrade import CoreUpgrades, ClickUpgrades, ClickometerUpgrades
 
 from ..Utilities import dispnum
 
@@ -37,6 +37,7 @@ class PageClickGame(PageClickGameTemplate):
         self.refresh_upgrade_order()
         self.repeating_panel_core_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
         self.repeating_panel_click_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
+        self.repeating_panel_clickometer_upgrades.set_event_handler('x-refresh-upgrade-order', self.refresh_upgrade_order)
         
         # setup generators tab
         self.repeating_panel_generators.items = Generators.values()
@@ -58,20 +59,21 @@ class PageClickGame(PageClickGameTemplate):
         
         self.label_core_points.text = f"{dispnum(CG.core_points)} points"
         self.label_click_points.text = f"{dispnum(CG.click_points)} clicks"
-        self.label_clickometer_points.text = f"{dispnum(CG.clickometer_points)} bars"
+        self.label_clickometer_points.text = f"{dispnum(CG.clickometer_points, as_int = False)} fills"
         
-        self.label_tick_gain.text = f"{dispnum(CG.tick_gain)} points / tick"
+        self.label_click_gain.text = f"{dispnum(self._click_gain() * CG.click_point_gain)} points / click"
+        self.label_tick_gain.text = f"{dispnum(CG.tick_gain + self._click_gain() * CG.click_point_tick_gain)} points / tick"
         self.label_tick_time.text = f"tick: {CG.tick_time:0.2f}s"
-        self.label_click_gain.text = f"{dispnum(self._click_gain())} points / click"
 
-        self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain)} clicks / click"
-        self.label_clicks_per_tick.text = f"{dispnum(CG.click_point_tick_gain)} clicks / tick"
+        self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain * (1.0 + CG.click_point_percent), as_int = False)} clicks / click"
+        self.label_clicks_per_tick.text = f"{dispnum(CG.click_point_tick_gain * (1.0 + CG.click_point_percent), as_int = False)} clicks / tick"
+        self.label_fills_per_fill.text = f"{dispnum(CG.clickometer_gain, as_int = False)} fills / fill"
 
         progress = CG.clickometer_progress / float(CG.clickometer_max)
         self.progress_clickometer.progress = progress
         self.progress_clickometer2.progress = progress
         self.progress_clickometer3.progress = progress
-        self.label_clickometer_progress.text = f"clickometer: {dispnum(CG.clickometer_progress)} / {dispnum(CG.clickometer_max)}"
+        self.label_clickometer_progress.text = f"{dispnum(CG.clickometer_progress)} / {dispnum(CG.clickometer_max)}"
 
         self._update_tabs()
         self._update_core_upgrades()
@@ -88,30 +90,29 @@ class PageClickGame(PageClickGameTemplate):
                     tab_button.text = tab.name.replace("_", " ")                
                     tab_button.enabled = True
                     tab_button.tooltip = None
-    
+
+    @staticmethod
+    def _update_repeating_panel(repeating_panel):
+        for panel in repeating_panel.get_components():
+            panel.visible = panel.item.is_visible()
+            if panel.visible:
+                panel.update_display()
+                
     def _update_core_upgrades(self):
-        for upgrade_panel in self.repeating_panel_core_upgrades.get_components():
-            upgrade_panel.visible = upgrade_panel.item.is_visible()
-            if upgrade_panel.visible:
-                upgrade_panel.update_display()
+        self._update_repeating_panel(self.repeating_panel_core_upgrades)
     
     def _update_generators_tab(self):
-        for generator_panel in self.repeating_panel_generators.get_components():
-            generator_panel.visible = generator_panel.item.is_visible()
-            if generator_panel.visible:
-                generator_panel.update_display()
+        self._update_repeating_panel(self.repeating_panel_generators)
 
     def _update_click_upgrades_tab(self):
         self.panel_click_labels.visible = CG.click_point_tick_gain > 0
-        for click_upgrade_panel in self.repeating_panel_click_upgrades.get_components():
-            click_upgrade_panel.visible = click_upgrade_panel.item.is_visible()
-            if click_upgrade_panel.visible:
-                click_upgrade_panel.update_display()
+        self._update_repeating_panel(self.repeating_panel_click_upgrades)
 
     def _update_clickometer_tab(self):
         clickometer_visible = CG.clickometer_gain > 0
-        self.grid_panel_clickometer.visible = clickometer_visible
+        self.panel_clickometer.visible = clickometer_visible
         CG.game.label_clickometer_points.visible = clickometer_visible
+        self._update_repeating_panel(self.repeating_panel_clickometer_upgrades)
     
     def _update_tick_gain(self):
         CG.tick_gain = 0
@@ -139,18 +140,20 @@ class PageClickGame(PageClickGameTemplate):
         CG.core_points += self._click_gain() * click_point_multi
 
         # update click points
+        click_point_multi *= (1.0 + CG.click_point_percent)
         if CG.state >= STATE.AUTO_CLICKER:
-            CG.click_points += click_point_multi * (1.0 + CG.click_point_percent)
+            CG.click_points += click_point_multi
             self.button_auto_click_unlock.enabled = CG.click_points >= COST.AUTO_CLICK
 
         # update clickometer progress
         if CG.state >= STATE.CLICKOMETER:
-            CG.clickometer_progress += click_point_multi
             self.button_clickometer_unlock.enabled = CG.click_points >= COST.CLICKOMETER
-            if CG.clickometer_progress >= CG.clickometer_max:
-                CG.clickometer_points += CG.clickometer_gain
-                CG.clickometer_progress -= CG.clickometer_max
-                CG.clickometer_max = int(CG.clickometer_max * 1.01)
+            if CG.clickometer_gain > 0:
+                CG.clickometer_progress += click_point_multi
+                if CG.clickometer_progress >= CG.clickometer_max:
+                    CG.clickometer_points += CG.clickometer_gain
+                    CG.clickometer_progress -= CG.clickometer_max
+                    CG.clickometer_max = int(CG.clickometer_max * 1.01)
     
     # Callbacks
 
@@ -158,6 +161,7 @@ class PageClickGame(PageClickGameTemplate):
         """callback for resorting the upgrade list order"""
         self.repeating_panel_core_upgrades.items = sorted(CoreUpgrades.values(), key=lambda x: x.cost)
         self.repeating_panel_click_upgrades.items = sorted(ClickUpgrades.values(), key=lambda x: x.cost)
+        self.repeating_panel_clickometer_upgrades.items = sorted(ClickometerUpgrades.values(), key=lambda x: x.cost)
         self.update_display()
 
     def timer_tick(self, **event_args):
@@ -186,6 +190,7 @@ class PageClickGame(PageClickGameTemplate):
     def button_clickometer_unlock_click(self, **event_args):
         """callback on auto click unlock"""
         self.outlined_card_clickometer_unlock.visible = False
+        self.label_fills_per_fill.visible = True
         CG.clickometer_gain = 1
         CG.click_points -= COST.CLICKOMETER
         self.update_display()

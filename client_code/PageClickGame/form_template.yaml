@@ -60,28 +60,39 @@ components:
       properties: {visible: true, role: input-prompt}
       type: Label
       layout_properties: {}
-  - name: grid_panel_clickometer
-    properties: {spacing_above: none, spacing_below: none, visible: false}
-    type: GridPanel
-    layout_properties: {grid_position: 'OUCNAB,ESDRMU TJLRAY,MROINR'}
+    - name: label_fills_per_fill
+      properties: {visible: false, role: input-prompt}
+      type: Label
+      layout_properties: {}
+  - name: panel_clickometer
+    properties: {spacing_below: none, spacing_above: none, col_spacing: none, visible: false}
+    type: ColumnPanel
+    layout_properties: {grid_position: 'OUCNAB,ESDRMU TIMPZD,EUQGDA'}
     components:
-    - name: progress_clickometer2
-      properties: {progress: 0}
-      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
-      layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}
     - name: progress_clickometer3
       properties: {progress: 0}
       type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
-      layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}
+      layout_properties: {grid_position: 'TADNBW,FKPTTT'}
+    - name: progress_clickometer2
+      properties: {progress: 0}
+      type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
+      layout_properties: {grid_position: 'YOGCQC,QGSOFC'}
     - properties: {progress: 0}
       type: form:dep_e8mj5tlimac2:ProgressBar.Determinate
-      layout_properties: {row: OZGPZN, width_xs: 12, col_xs: 0}
+      layout_properties: {grid_position: 'CRUUQM,VKKLJD'}
       name: progress_clickometer
-    - properties: {align: center, text: 'clickometer: 0 / 100', spacing_above: none,
-        spacing_below: none}
-      type: Label
-      layout_properties: {row: SRBZYX, width_xs: 12, col_xs: 0}
-      name: label_clickometer_progress
+    - name: flow_panel_1
+      properties: {spacing: tiny, spacing_below: none, spacing_above: none, align: center}
+      type: FlowPanel
+      layout_properties: {grid_position: 'BSESCS,PDYULR'}
+      components:
+      - name: label_1
+        properties: {text: 'clickometer:', spacing_below: none, spacing_above: none}
+        type: Label
+        layout_properties: {width: 0}
+      - properties: {align: center, text: 0 / 100, spacing_above: none, spacing_below: none}
+        type: Label
+        name: label_clickometer_progress
   - properties: {text: click, role: filled-button, font_size: 24, bold: true, background: 'theme:Primary'}
     type: Button
     layout_properties: {grid_position: 'SRHLIY,HWVSCJ', full_width_row: false}
@@ -169,6 +180,10 @@ components:
       type: Button
       layout_properties: {grid_position: 'RTMTIM,KNPFTQ'}
       event_bindings: {click: button_clickometer_unlock_click}
+  - name: repeating_panel_clickometer_upgrades
+    properties: {item_template: PageClickGame.TemplateUpgrade}
+    type: RepeatingPanel
+    layout_properties: {grid_position: 'LGQRVT,SIEJSG'}
 - properties: {role: outlined-card-tight, background: 'theme:Primary Container', col_spacing: small,
     spacing_above: none}
   type: ColumnPanel
