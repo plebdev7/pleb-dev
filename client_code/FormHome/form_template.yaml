@@ -8,27 +8,31 @@ components:
   name: content_panel
   layout_properties: {slot: default}
   components: []
-- name: label_title
-  properties: {text: pleb.dev, role: title}
-  type: Label
+- name: flow_panel_1
+  properties: {align: justify}
+  type: FlowPanel
   layout_properties: {slot: title}
-- type: FlowPanel
-  properties: {}
-  name: navbar_links
-  layout_properties: {slot: left-nav}
   components:
-  - name: link_games
-    properties: {icon: 'fa:gamepad'}
-    type: Link
+  - name: label_title
+    properties: {text: pleb.dev, role: title}
+    type: Label
+  - type: FlowPanel
+    properties: {align: right}
+    name: navbar_links
     layout_properties: {}
-    event_bindings: {click: nav_link_click}
-  - name: link_click
-    properties: {icon: 'fa:mouse-pointer'}
-    type: Link
-    layout_properties: {}
-    event_bindings: {click: nav_link_click}
-  - name: link_potions
-    properties: {icon: 'fa:flask'}
-    type: Link
-    layout_properties: {}
-    event_bindings: {click: nav_link_click}
+    components:
+    - name: link_games
+      properties: {icon: 'fa:gamepad'}
+      type: Link
+      layout_properties: {}
+      event_bindings: {click: nav_link_click}
+    - name: link_click
+      properties: {icon: 'fa:mouse-pointer'}
+      type: Link
+      layout_properties: {}
+      event_bindings: {click: nav_link_click}
+    - name: link_potions
+      properties: {icon: 'fa:flask'}
+      type: Link
+      layout_properties: {}
+      event_bindings: {click: nav_link_click}
