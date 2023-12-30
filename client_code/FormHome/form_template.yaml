@@ -8,10 +8,14 @@ components:
   name: content_panel
   layout_properties: {slot: default}
   components: []
+- name: label_title
+  properties: {text: pleb.dev, role: title}
+  type: Label
+  layout_properties: {slot: title}
 - type: FlowPanel
   properties: {}
   name: navbar_links
-  layout_properties: {slot: nav-right}
+  layout_properties: {slot: left-nav}
   components:
   - name: link_games
     properties: {icon: 'fa:gamepad'}
@@ -28,7 +32,3 @@ components:
     type: Link
     layout_properties: {}
     event_bindings: {click: nav_link_click}
-- name: label_title
-  properties: {text: pleb.dev, role: title}
-  type: Label
-  layout_properties: {slot: title}
