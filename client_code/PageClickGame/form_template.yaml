@@ -2,11 +2,14 @@ is_package: true
 container: {type: ColumnPanel}
 components:
 - name: flow_panel_2
-  properties: {align: justify, spacing_below: none, spacing_above: none, spacing: medium,
+  properties: {align: justify, spacing_below: none, spacing_above: none, spacing: small,
     vertical_align: full}
   type: FlowPanel
-  layout_properties: {grid_position: 'SVXJNM,WWUQIP'}
+  layout_properties: {grid_position: 'SVXJNM,WWUQIP', full_width_row: false}
   components:
+  - name: spacer_3
+    properties: {height: 32}
+    type: Spacer
   - name: column_panel_1
     properties: {spacing_below: none, spacing_above: none}
     type: ColumnPanel
@@ -53,6 +56,9 @@ components:
       type: Label
       name: label_tick_time
       layout_properties: {grid_position: 'NWKGPR,UPPRZJ'}
+  - name: spacer_4
+    properties: {height: 32}
+    type: Spacer
   - name: panel_click_labels
     properties: {spacing_below: none, spacing_above: none}
     type: ColumnPanel
@@ -70,6 +76,9 @@ components:
       properties: {visible: false, role: input-prompt, spacing_below: none, spacing_above: none}
       type: Label
       layout_properties: {grid_position: 'UZHXGV,IMSHFE'}
+  - name: spacer_2
+    properties: {height: 32, visible: true}
+    type: Spacer
 - properties: {role: outlined-card, background: ''}
   type: ColumnPanel
   layout_properties: {grid_position: 'JFSWXH,KNXLOU', full_width_row: false}

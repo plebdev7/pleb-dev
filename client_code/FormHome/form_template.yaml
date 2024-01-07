@@ -20,10 +20,6 @@ components:
   - name: label_title
     properties: {text: pleb.dev, role: title}
     type: Label
-  - name: spacer_3
-    properties: {height: 32}
-    type: Spacer
-    layout_properties: {expand: true}
   - type: FlowPanel
     properties: {align: right}
     name: navbar_links

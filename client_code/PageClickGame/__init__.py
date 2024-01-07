@@ -14,7 +14,6 @@ from ..Utilities import dispnum
 
 # from anvil import *
 
-
 class PageClickGame(PageClickGameTemplate):
     TITLE = 'click'
     
