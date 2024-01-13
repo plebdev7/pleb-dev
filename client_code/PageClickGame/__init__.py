@@ -141,6 +141,9 @@ class PageClickGame(PageClickGameTemplate):
                     CG.clickometer_points += CG.clickometer_gain
                     CG.clickometer_progress -= CG.clickometer_max
                     CG.clickometer_max = int(CG.clickometer_max * 1.01)
+
+        self.button_auto_click_unlock.role = "upgrade"
+        self.button_clickometer_unlock.role = "upgrade"
     
     # Callbacks
 
@@ -169,14 +172,14 @@ class PageClickGame(PageClickGameTemplate):
 
     def button_auto_click_unlock_click(self, **event_args):
         """callback on auto click unlock"""
-        self.outlined_card_auto_clicker_unlock.visible = False
+        self.button_auto_click_unlock.visible = False
         CG.click_point_tick_gain = 1
         CG.click_points -= COST.AUTO_CLICK
         self.update_display()
 
     def button_clickometer_unlock_click(self, **event_args):
         """callback on auto click unlock"""
-        self.outlined_card_clickometer_unlock.visible = False
+        self.button_clickometer_unlock.visible = False
         self.label_fills_per_fill.visible = True
         CG.clickometer_gain = 1
         CG.click_points -= COST.CLICKOMETER
