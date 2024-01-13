@@ -60,20 +60,20 @@ a:hover {
 
 /* Upgrade button styles */
 
-.anvil-role-upgrade > .btn {
-    background-color: steelblue !important; /* Steel blue color for upgrade button */
+.anvil-role-unlock > .btn {
+    background-color: steelblue; /* Steel blue color for upgrade button */
     /* Add any other specific styles for upgrade button */
 }
 
-.anvil-role-upgrade > .btn:hover {
-    background-color: #4682b4 !important; /* Darker steel blue on hover */
+.anvil-role-unlock > .btn:hover {
+    background-color: #2e598f; /* Darker steel blue on hover */
 }
 
-.anvil-role-upgrade > .btn:focus {
-    outline: 2px solid #4682b4 !important; /* Steel blue outline on focus */
+.anvil-role-unlock > .btn:focus {
+    outline: 2px solid #4682b4; /* Steel blue outline on focus */
 }
 
-.anvil-role-upgrade > .btn:active {
+.anvil-role-unlock > .btn:active {
     background-color: #1e90ff !important; /* Brighter blue when upgrade button is pressed */
 }
 

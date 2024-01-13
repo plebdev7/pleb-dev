@@ -141,9 +141,6 @@ class PageClickGame(PageClickGameTemplate):
                     CG.clickometer_points += CG.clickometer_gain
                     CG.clickometer_progress -= CG.clickometer_max
                     CG.clickometer_max = int(CG.clickometer_max * 1.01)
-
-        self.button_auto_click_unlock.role = "upgrade"
-        self.button_clickometer_unlock.role = "upgrade"
     
     # Callbacks
 

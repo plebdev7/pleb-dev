@@ -1,5 +1,5 @@
 roles:
-- name: upgrade
+- name: unlock
   components: [Button]
   display_in_toolbox: false
   title: UpgradeButton

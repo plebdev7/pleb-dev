@@ -197,14 +197,14 @@ components:
     layout_properties: {grid_position: 'CMPKSK,ECUOUW'}
     components:
     - name: button_auto_click_unlock
-      properties: {text: 'Unlock Auto-Clicker: 10 clicks', role: upgrade, spacing_below: small,
+      properties: {text: 'Unlock Auto-Clicker: 10 clicks', role: unlock, spacing_below: small,
         spacing_above: small, bold: true, underline: false, italic: false}
       type: Button
       layout_properties: {grid_position: 'RTMTIM,KNPFTQ'}
       event_bindings: {click: button_auto_click_unlock_click}
       data_bindings: []
     - name: button_clickometer_unlock
-      properties: {text: 'Unlock Clickometer: 1000 clicks', role: upgrade, spacing_below: small,
+      properties: {text: 'Unlock Clickometer: 1000 clicks', role: unlock, spacing_below: small,
         spacing_above: small, bold: true, underline: false, italic: false}
       type: Button
       layout_properties: {grid_position: 'SLUWAP,EZFCOM'}
