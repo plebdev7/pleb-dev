@@ -66,9 +66,9 @@ class STATE:
     CLICKOMETER = 3
 
 
-class COST:
-    AUTO_CLICK = 10
-    CLICKOMETER = 1000
+class UNLOCK:
+    AUTO_CLICK = 10000
+    CLICKOMETER = 1000000
 
 
 class CG:
@@ -98,9 +98,9 @@ class CG:
     update_generators = True
     update_upgrades = True
 
-    DEBUG = False
+    DEBUG = True
     
     if DEBUG:
-        core_points = 1000000
-        click_points = 10000
+        core_points = 999999
+        click_points = 0
 

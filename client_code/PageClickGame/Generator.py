@@ -31,12 +31,12 @@ class Generator:
 
 
 Generators = {
-    G.GENERATOR_A: Generator('generator a', 1, 10),
-    G.GENERATOR_B: Generator('generator b', 5, 100),
-    G.GENERATOR_C: Generator('generator c', 20, 1500),
-    G.GENERATOR_D: Generator('generator d', 100, 30000),
-    G.GENERATOR_E: Generator('generator e', 500, 750000),
-    G.GENERATOR_F: Generator('generator f', 2000, 22500000),
-    G.GENERATOR_G: Generator('generator g', 10000, 787500000),
-    G.GENERATOR_H: Generator('generator h', 50000, 31500000000),
+    G.GENERATOR_A: Generator('generator a', 5**0, 10),
+    G.GENERATOR_B: Generator('generator b', 5**1, 100),
+    G.GENERATOR_C: Generator('generator c', 5**2, 1500),
+    G.GENERATOR_D: Generator('generator d', 5**3, 30000),
+    G.GENERATOR_E: Generator('generator e', 5**4, 750000),
+    G.GENERATOR_F: Generator('generator f', 5**5, 22500000),
+    G.GENERATOR_G: Generator('generator g', 5**6, 787500000),
+    G.GENERATOR_H: Generator('generator h', 5**7, 31500000000),
 }

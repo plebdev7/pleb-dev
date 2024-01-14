@@ -40,7 +40,7 @@ components:
     type: Spacer
     layout_properties: {expand: false, width: 40}
   - name: column_panel_2
-    properties: {col_spacing: medium, spacing_above: none, spacing_below: none}
+    properties: {col_spacing: medium, spacing_above: none, spacing_below: none, visible: true}
     type: ColumnPanel
     layout_properties: {}
     components:
@@ -60,7 +60,7 @@ components:
     properties: {height: 32}
     type: Spacer
   - name: panel_click_labels
-    properties: {spacing_below: none, spacing_above: none}
+    properties: {spacing_below: none, spacing_above: none, visible: false}
     type: ColumnPanel
     layout_properties: {}
     components:
@@ -185,18 +185,19 @@ components:
     type: RepeatingPanel
     layout_properties: {grid_position: 'IKDUSD,BCARXF'}
     name: repeating_panel_core_upgrades
-- properties: {role: outlined-card-tight, background: '', visible: false, col_spacing: tiny,
+- properties: {role: outlined-card-tight, background: '', visible: true, col_spacing: tiny,
     spacing_above: none}
   type: ColumnPanel
   layout_properties: {grid_position: 'ZPRUTR,WOAMHV'}
   name: outlined_card_auto_clicker
   components:
-  - properties: {text: auto-clicker, role: title, icon: 'fa:hand-pointer-o'}
+  - properties: {text: auto-clicker, role: title, icon: 'fa:hand-pointer-o', visible: true}
     type: Label
     layout_properties: {grid_position: 'AWQRSV,FRWVTU'}
-    name: label_5
+    name: label_auto_clicker
   - name: outlined_card_clicker_unlocks
-    properties: {role: outlined-card-tight, spacing_below: none, spacing_above: none}
+    properties: {role: outlined-card-tight, spacing_below: none, spacing_above: none,
+      visible: false}
     type: ColumnPanel
     layout_properties: {grid_position: 'CMPKSK,ECUOUW'}
     components:
@@ -215,10 +216,10 @@ components:
       event_bindings: {click: button_clickometer_unlock_click}
   - name: repeating_panel_click_upgrades
     properties: {item_template: PageClickGame.TemplateUpgrade, spacing_below: none,
-      spacing_above: none}
+      spacing_above: none, visible: false}
     type: RepeatingPanel
     layout_properties: {grid_position: 'SEFFVP,MYQEDR'}
-- properties: {role: outlined-card-tight, background: '', visible: false, spacing_above: none,
+- properties: {role: outlined-card-tight, background: '', visible: true, spacing_above: none,
     col_spacing: tiny}
   type: ColumnPanel
   layout_properties: {grid_position: 'ZPRUTR,HHQHHY'}
@@ -227,7 +228,7 @@ components:
   - properties: {text: clickometer, role: title, icon: 'fa:minus'}
     type: Label
     layout_properties: {grid_position: 'ORUDKG,OTJSGF'}
-    name: label_4
+    name: label_clickometer
   - name: outlined_card_clickometer_unlocks
     properties: {role: outlined-card-tight, spacing_below: none, spacing_above: none}
     type: ColumnPanel
@@ -235,6 +236,6 @@ components:
     components: []
   - name: repeating_panel_clickometer_upgrades
     properties: {item_template: PageClickGame.TemplateUpgrade, spacing_below: none,
-      spacing_above: none}
+      spacing_above: none, visible: false}
     type: RepeatingPanel
     layout_properties: {grid_position: 'LGQRVT,SIEJSG'}
