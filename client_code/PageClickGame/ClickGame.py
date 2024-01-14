@@ -98,7 +98,7 @@ class CG:
     update_generators = True
     update_upgrades = True
 
-    DEBUG = True
+    DEBUG = False
     
     if DEBUG:
         core_points = 999999
