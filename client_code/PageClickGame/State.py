@@ -10,7 +10,7 @@ class State:
 
 class StateAutoClicker(State):
     def enter(self):
-        CG.game.column_panel_clicks.visible = True
+        pass
 
 class StateClickometer(State):
     def enter(self):

@@ -1,64 +1,8 @@
 roles:
-- name: input-prompt
-  components: [Label]
-- name: selected
-  components: [Link]
-- name: outlined-card
-  components: [ColumnPanel, LinearPanel, XYPanel, RepeatingPanel]
-  display_in_toolbox: true
-  title: Outlined Card
-- name: elevated-card
-  components: [ColumnPanel, LinearPanel, XYPanel, RepeatingPanel]
+- name: unlock
+  components: [Button]
   display_in_toolbox: false
-  title: Elevated Card
-- name: tonal-card
-  components: [ColumnPanel, LinearPanel, XYPanel, RepeatingPanel]
-  display_in_toolbox: false
-  title: Tonal Card
-- name: outlined-button
-  components: [Button, FileLoader]
-  display_in_toolbox: true
-  title: Outlined Button
-- name: filled-button
-  components: [Button, FileLoader]
-  display_in_toolbox: false
-  title: Filled Button
-- name: elevated-button
-  components: [Button, FileLoader]
-  display_in_toolbox: false
-  title: Elevated Button
-- name: tonal-button
-  components: [Button, FileLoader]
-  display_in_toolbox: false
-  title: Tonal Button
-- name: outlined
-  components: [TextBox, TextArea, DatePicker, DropDown]
-  display_in_toolbox: true
-  title: Outlined TextBox
-- name: display
-  components: [Label, Link]
-- name: headline
-  components: [Label, Link]
-- name: title
-  components: [Label, Link]
-- name: body
-  components: [Label, Link]
-- name: tonal-data-grid
-  components: [DataGrid]
-- name: outlined-error
-  components: [TextBox, TextArea, DatePicker, DropDown]
-- name: input-error
-  components: [TextBox, TextArea, DatePicker, DropDown]
-- name: outlined-card-tight
-  components: [ColumnPanel, RepeatingPanel, XYPanel, LinearPanel]
-- name: outlined-button-tight
-  components: [Button, FileLoader]
-- name: filled-button-tight
-  components: [Button, FileLoader]
-- name: elevated-button-tight
-  components: [Button, FileLoader]
-- name: tonal-button-tight
-  components: [Button, FileLoader]
+  title: UpgradeButton
 color_scheme:
   preset_groups:
   - name: Colour Scheme

@@ -13,27 +13,13 @@ class Tab:
         if CG.core_points >= self.cost and not self.unlocked:
             self.unlocked = True
             activate_state(self.unlock_state)
+            self.activate()
                 
         return self.unlocked
 
     def activate(self):
-        tab_button = getattr(CG.game, f'button_{self.name}')
         tab_card = getattr(CG.game, f'outlined_card_{self.name}')
-
-        tab_button.role = 'filled-button'
         tab_card.visible = True
-
-        # deactivate all other tabs
-        for tab in Tabs.values():
-            if tab != self:
-                tab.deactivate()
-        
-    def deactivate(self):
-        tab_button = getattr(CG.game, f'button_{self.name}')
-        tab_card = getattr(CG.game, f'outlined_card_{self.name}')
-
-        tab_button.role = 'tonal-button'
-        tab_card.visible = False
             
 
 Tabs = {
