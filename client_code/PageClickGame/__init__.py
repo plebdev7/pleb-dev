@@ -1,4 +1,4 @@
-from math import floor, ceil, log2
+from math import log2
 
 from anvil.js import get_dom_node
 
@@ -52,12 +52,12 @@ class PageClickGame(PageClickGameTemplate):
         self.label_click_points.text = f"{dispnum(CG.click_points)} clicks"
         self.label_clickometer_points.text = f"{dispnum(CG.clickometer_points, as_int = False)} fills"
         
-        self.label_click_gain.text = f"{dispnum(self._click_gain() * CG.click_point_gain, as_int = False)} points / click"
-        self.label_tick_gain.text = f"{dispnum(CG.tick_gain + self._click_gain() * CG.click_point_tick_gain, as_int = False)} points / tick"
+        self.label_click_gain.text = f"{dispnum(self._click_gain() * CG.click_point_gain, as_int = False)} points/click"
+        self.label_tick_gain.text = f"{dispnum(CG.tick_gain + self._click_gain() * CG.click_point_tick_gain, as_int = False)} points/tick"
         self.label_tick_time.text = f"tick: {CG.tick_time:0.2f}s"
 
-        self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain * (1.0 + CG.click_point_percent), as_int = False)} clicks / click"
-        self.label_clicks_per_tick.text = f"{dispnum(CG.click_point_tick_gain * (1.0 + CG.click_point_percent), as_int = False)} clicks / tick"
+        self.label_clicks_per_click.text = f"{dispnum(CG.click_point_gain * (1.0 + CG.click_point_percent), as_int = False)} clicks/click"
+        self.label_clicks_per_tick.text = f"{dispnum(CG.click_point_tick_gain * (1.0 + CG.click_point_percent), as_int = False)} clicks/tick"
         self.label_fills_per_fill.text = f"{dispnum(CG.clickometer_gain, as_int = False)} fills / fill"
 
         progress = CG.clickometer_progress / float(CG.clickometer_max)
@@ -115,7 +115,7 @@ class PageClickGame(PageClickGameTemplate):
             gain += CG.click_percent * CG.tick_gain
         if CG.click_logx > 0 and CG.click_points > 0:
             gain *= (1 + CG.click_logx * log2(CG.click_points) / 100.0)
-        return floor(gain)
+        return gain
     
     def _apply_button_click_effect(self, manual: bool = False):
         if manual:
